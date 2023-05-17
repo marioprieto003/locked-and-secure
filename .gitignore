@@ -1,3 +1,6 @@
+# Archivo donde se guardan las claves 
+config.py
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
