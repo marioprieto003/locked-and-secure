@@ -1,3 +1,10 @@
 <resources>
-    <string name="app_name">Gestor Contraseñas</string>
+    <!-- GENERAL -->
+    <string name="app_name">Locked&amp;Secure</string>
+
+    <string name="email" translatable="false">Email</string>
+    <string name="contraseña">Contraseña</string>
+
+    <!-- LOGIN -->
+    <string name="contraseña_error">Contraseña incorrecta</string>
 </resources>
