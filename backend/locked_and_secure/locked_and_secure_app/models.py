@@ -1,6 +1,7 @@
 from django.db import models
 
 class Usuarios(models.Model):
+    # id auto generado
     email = models.EmailField()
     contraseña = models.TextField()
     nombre = models.TextField()
@@ -13,6 +14,7 @@ class Usuarios(models.Model):
             managed = False
             
 class Contraseñas(models.Model):
+    # id auto generado
     id_usuario = models.ForeignKey('Usuarios', on_delete=models.CASCADE)
     id_grupo = models.ForeignKey('Grupos', on_delete=models.CASCADE)
     contraseña = models.TextField()
@@ -24,6 +26,7 @@ class Contraseñas(models.Model):
         managed = False
         
 class Grupos(models.Model):
+    # id auto generado
     nombre = models.TextField()
     imagen = models.TextField()  
 
