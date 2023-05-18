@@ -10,8 +10,7 @@ class Usuarios(models.Model):
     token_sesion = models.TextField(null=True, default=None)
     token_recuperacion = models.TextField(null=True, default=None)
     
-    class Meta:
-            managed = False
+    
             
 class Contraseñas(models.Model):
     # id auto generado
@@ -22,14 +21,12 @@ class Contraseñas(models.Model):
     usuario = models.TextField(null=True)
     fecha = models.DateField()
     
-    class Meta:
-        managed = False
+   
         
 class Grupos(models.Model):
     # id auto generado
     nombre = models.TextField()
     imagen = models.TextField()  
 
-    class Meta:
-        managed = False
+    
         

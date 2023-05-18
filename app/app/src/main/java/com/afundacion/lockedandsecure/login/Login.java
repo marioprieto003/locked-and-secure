@@ -11,6 +11,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.afundacion.gestorcontrasenas.R;
+import com.afundacion.lockedandsecure.registro.Registro;
 import com.afundacion.lockedandsecure.rest.Rest;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
@@ -42,6 +43,8 @@ public class Login extends AppCompatActivity {
         contraseñaLayout = findViewById(R.id.contraseñaTextInputLayout);
         inicioSesionBoton = findViewById(R.id.loginBoton);
         inicioSesionBoton.setOnClickListener(inicioSesionListener);
+        registrarBoton = findViewById(R.id.registrarBoton);
+        registrarBoton.setOnClickListener(registrarListener);
     }
 
     View.OnClickListener inicioSesionListener = new View.OnClickListener() {
@@ -96,6 +99,14 @@ public class Login extends AppCompatActivity {
             }
 
 
+        }
+    };
+
+    View.OnClickListener registrarListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            Intent intent = new Intent(context, Registro.class);
+            startActivity(intent);
         }
     };
 }

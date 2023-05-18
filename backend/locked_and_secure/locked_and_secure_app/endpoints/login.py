@@ -23,8 +23,9 @@ def login(request):
     
     if bcrypt.checkpw(contraseña.encode('utf8'), usuario.contraseña.encode('utf8')):
         token_sesion = secrets.token_hex(15)
-        usuario.update(token_sesion=token_sesion)
-        return JsonResponse({"tokenSesion": random_token}, status=200)
+        usuario.token_sesion=token_sesion
+        usuario.save()
+        return JsonResponse({"tokenSesion": token_sesion}, status=200)
     else:
         return JsonResponse({"error": "Contraseña incorrecta"}, status=401)
     
