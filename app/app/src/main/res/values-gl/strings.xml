@@ -1,0 +1,9 @@
+<resources>
+    <!-- GENERAL -->
+    <string name="app_name">Locked&amp;Secure</string>
+
+    <string name="contraseña">Contrasinal</string>
+
+    <!-- LOGIN -->
+    <string name="contraseña_error">Contrasinal incorrecta</string>
+</resources>
