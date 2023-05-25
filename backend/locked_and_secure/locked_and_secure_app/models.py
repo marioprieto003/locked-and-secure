@@ -1,5 +1,5 @@
 from django.db import models
-
+from django.utils import timezone
 class Usuarios(models.Model):
     # id auto generado
     email = models.EmailField()
@@ -9,7 +9,7 @@ class Usuarios(models.Model):
     apellido2 = models.TextField()
     token_sesion = models.TextField(null=True, default=None)
     token_recuperacion = models.TextField(null=True, default=None)
-    
+    clave = models.TextField(null=True)
     
             
 class Contraseñas(models.Model):
@@ -19,7 +19,7 @@ class Contraseñas(models.Model):
     contraseña = models.TextField()
     email = models.EmailField(null=True)
     usuario = models.TextField(null=True)
-    fecha = models.DateField()
+    fecha = models.DateField(default=timezone.now())
     
    
         

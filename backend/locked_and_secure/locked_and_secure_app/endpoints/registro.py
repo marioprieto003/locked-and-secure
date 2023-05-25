@@ -1,7 +1,7 @@
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from locked_and_secure_app.models import Usuarios
-import json, bcrypt
+import json, bcrypt, secrets
 
 @csrf_exempt
 def registro(request):
@@ -30,7 +30,8 @@ def registro(request):
                              apellido1=apellido1,
                              apellido2=apellido2,
                              token_sesion=None,
-                             token_recuperacion=None
+                             token_recuperacion=None,
+                             clave=secrets.token_hex(20)
                             )
         usuario.save()
         return JsonResponse({"mensaje": "Usuario creado"}, status=201)
