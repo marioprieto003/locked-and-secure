@@ -6,4 +6,8 @@
 
     <!-- LOGIN -->
     <string name="contraseña_error">Contraseña incorrecta</string>
+    <string name="usuario">User</string>
+    <string name="grupo">Group</string>
+
+    <string name="generar_contraseña">Generate password</string>
 </resources>

@@ -80,6 +80,29 @@ public class Rest {
         ));
     }
 
+    public void crearContraseña(Response.Listener<JSONObject> onResponse, Response.ErrorListener onErrorResponse, JSONObject body) {
+        queue = Volley.newRequestQueue(context);
+        queue.add(new JsonObjectRequestWithCustomAuth(
+                Request.Method.POST,
+                BASE_URL + "/contraseña",
+                body,
+                onResponse,
+                onErrorResponse,
+                context
+        ));
+    }
+
+    public void generarContraseña(Response.Listener<JSONObject> onResponse, Response.ErrorListener onErrorResponse) {
+        queue = Volley.newRequestQueue(context);
+        queue.add(new JsonObjectRequest(
+                Request.Method.GET,
+                BASE_URL + "/contraseña",
+                null,
+                onResponse,
+                onErrorResponse
+        ));
+    }
+
     class JsonObjectRequestWithCustomAuth extends JsonObjectRequest {
         private Context context;
 
