@@ -25,7 +25,7 @@ def login(request):
         token_sesion = secrets.token_hex(15)
         usuario.token_sesion=token_sesion
         usuario.save()
-        return JsonResponse({"tokenSesion": token_sesion}, status=200)
+        return JsonResponse({"token": token_sesion}, status=200)
     else:
         return JsonResponse({"error": "Contraseña incorrecta"}, status=401)
     

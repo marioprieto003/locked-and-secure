@@ -7,4 +7,7 @@
 
     <!-- LOGIN -->
     <string name="contraseña_error">Contraseña incorrecta</string>
+    <string name="nombre">Nombre</string>
+
+    <string name="campo_obligatorio">Campo obligatorio</string>
 </resources>

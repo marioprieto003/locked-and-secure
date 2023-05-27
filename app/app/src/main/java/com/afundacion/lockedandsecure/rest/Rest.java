@@ -80,6 +80,18 @@ public class Rest {
         ));
     }
 
+    public void crearGrupo(Response.Listener<JSONObject> onResponse, Response.ErrorListener onErrorResponse, JSONObject body) {
+        queue = Volley.newRequestQueue(context);
+        queue.add(new JsonObjectRequestWithCustomAuth(
+                Request.Method.POST,
+                BASE_URL + "/grupo",
+                body,
+                onResponse,
+                onErrorResponse,
+                context
+        ));
+    }
+
     class JsonObjectRequestWithCustomAuth extends JsonObjectRequest {
         private Context context;
 
@@ -96,10 +108,10 @@ public class Rest {
         @Override
         public Map<String, String> getHeaders() {
             SharedPreferences preferences = context.getSharedPreferences("usuario", Context.MODE_PRIVATE);
-            String tokenSesion = preferences.getString("tokenSesion", null);
+            String tokenSesion = preferences.getString("token", null);
 
             HashMap<String, String> myHeaders = new HashMap<>();
-            myHeaders.put("tokenSesion", tokenSesion);
+            myHeaders.put("token", tokenSesion);
             return myHeaders;
         }
     }

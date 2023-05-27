@@ -6,4 +6,7 @@
 
     <!-- LOGIN -->
     <string name="contraseña_error">Contrasinal incorrecta</string>
+    <string name="nombre">Nome</string>
+
+    <string name="campo_obligatorio">Campo obligatorio</string>
 </resources>
