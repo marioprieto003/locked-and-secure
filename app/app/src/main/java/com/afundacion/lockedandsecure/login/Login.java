@@ -11,6 +11,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.afundacion.gestorcontrasenas.R;
+import com.afundacion.lockedandsecure.crearContrasena.CrearContraseña;
 import com.afundacion.lockedandsecure.inicio.Inicio;
 import com.afundacion.lockedandsecure.registro.Registro;
 import com.afundacion.lockedandsecure.rest.Rest;

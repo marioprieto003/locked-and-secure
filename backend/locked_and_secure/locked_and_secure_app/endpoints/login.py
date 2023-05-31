@@ -23,6 +23,11 @@ def login(request):
     
     if bcrypt.checkpw(contraseña.encode('utf8'), usuario.contraseña.encode('utf8')):
         token_sesion = secrets.token_hex(15)
+        # TEMPORAL | LA COMPROBACION Y CREACION DE LA CLAVE IRA EN EL INICIO
+        if usuario.clave == None:
+            clave = secrets.token_hex(15)
+            usuario.clave=clave
+        
         usuario.token_sesion=token_sesion
         usuario.save()
         return JsonResponse({"token": token_sesion}, status=200)

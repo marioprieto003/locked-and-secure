@@ -82,7 +82,6 @@ public class Rest {
         ));
     }
 
-
     public void crearGrupo(Response.Listener<JSONObject> onResponse, Response.ErrorListener onErrorResponse, JSONObject body) {
         queue = Volley.newRequestQueue(context);
         queue.add(new JsonObjectRequestWithCustomAuth(
@@ -94,6 +93,18 @@ public class Rest {
         ));
     }
 
+  public void crearContraseña(Response.Listener<JSONObject> onResponse, Response.ErrorListener onErrorResponse, JSONObject body) {
+        queue = Volley.newRequestQueue(context);
+        queue.add(new JsonObjectRequestWithCustomAuth(
+                Request.Method.POST,
+                BASE_URL + "/contraseña",
+                body,
+                onResponse,
+                onErrorResponse,
+                context
+        ));
+    }
+  
     public void inicio(Response.Listener<JSONArray> onResponse, Response.ErrorListener onErrorResponse) {
         queue = Volley.newRequestQueue(context);
         queue.add(new JsonArrayRequestWithCustomAuth(
@@ -105,6 +116,19 @@ public class Rest {
                 context
         ));
     }
+
+
+    public void generarContraseña(Response.Listener < JSONObject > onResponse, Response.ErrorListener onErrorResponse) {
+        queue = Volley.newRequestQueue(context);
+        queue.add(new JsonObjectRequest(
+                Request.Method.GET,
+                BASE_URL + "/contraseña",
+                null,
+                onResponse,
+                onErrorResponse
+        ));
+    }
+
 
     class JsonObjectRequestWithCustomAuth extends JsonObjectRequest {
         private Context context;
@@ -134,11 +158,11 @@ public class Rest {
         private Context context;
 
         public JsonArrayRequestWithCustomAuth(int method,
-                                               String url,
-                                               @Nullable JSONArray jsonRequest,
-                                               Response.Listener<JSONArray> listener,
-                                               @Nullable Response.ErrorListener errorListener,
-                                               Context context) {
+                                              String url,
+                                              @Nullable JSONArray jsonRequest,
+                                              Response.Listener<JSONArray> listener,
+                                              @Nullable Response.ErrorListener errorListener,
+                                              Context context) {
             super(method, url, jsonRequest, listener, errorListener);
             this.context = context;
         }

@@ -13,6 +13,7 @@ import com.afundacion.gestorcontrasenas.R;
 import com.afundacion.lockedandsecure.rest.Rest;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 
@@ -66,6 +67,7 @@ public class Registro extends AppCompatActivity {
             if (email.getText().length() <= 0) {
                 emailLayout.setError("");
                 emailLayout.setHelperText("Campo obligatorio");
+                // FALTA COMPROBACION DE EMAIL
             } else if (contraseña.getText().length() <= 0) {
                 contraseñaLayout.setError("");
                 contraseñaLayout.setHelperText("Campo obligatorio");
@@ -102,7 +104,9 @@ public class Registro extends AppCompatActivity {
                         new Response.Listener<JSONObject>() {
                             @Override
                             public void onResponse(JSONObject response) {
-                                Toast.makeText(context, "Registrado", Toast.LENGTH_SHORT).show();
+                                Snackbar.make(findViewById(R.id.myCoordinatorLayout), "Usuario Registrado", Snackbar.LENGTH_LONG);
+                                onBackPressed();
+                                finish();
                             }
                         },
                         new Response.ErrorListener() {
