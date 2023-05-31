@@ -34,6 +34,7 @@ android {
                     'src/main/res/layouts/registro',
                     'src/main/res/layouts/grupos',
                     'src/main/res/layouts/inicio',
+                    'src/main/res/layouts/contraseñas',
                     'src/main/res/layouts',
                     'src/main/res'
             ]

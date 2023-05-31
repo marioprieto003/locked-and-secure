@@ -106,6 +106,18 @@ public class Rest {
         ));
     }
 
+    public void getContraseñas(Response.Listener<JSONArray> onResponse, Response.ErrorListener onErrorResponse, int idGrupo) {
+        queue = Volley.newRequestQueue(context);
+        queue.add(new JsonArrayRequestWithCustomAuth(
+                Request.Method.GET,
+                BASE_URL + "/grupo/" + idGrupo,
+                null,
+                onResponse,
+                onErrorResponse,
+                context
+        ));
+    }
+
     class JsonObjectRequestWithCustomAuth extends JsonObjectRequest {
         private Context context;
 

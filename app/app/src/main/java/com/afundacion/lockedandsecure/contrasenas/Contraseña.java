@@ -1,6 +1,8 @@
 package com.afundacion.lockedandsecure.contrasenas;
 
-public class Contraseña {
+import java.io.Serializable;
+
+public class Contraseña implements Serializable {
     int id;
     String contraseña, email, usuario, fecha;
 

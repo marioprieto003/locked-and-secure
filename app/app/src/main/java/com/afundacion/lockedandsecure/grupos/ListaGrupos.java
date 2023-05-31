@@ -17,6 +17,7 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.afundacion.gestorcontrasenas.R;
 import com.afundacion.lockedandsecure.contrasenas.Contraseña;
+import com.afundacion.lockedandsecure.contrasenas.ListaContraseñas;
 import com.afundacion.lockedandsecure.rest.Rest;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
@@ -131,7 +132,13 @@ public class ListaGrupos extends Fragment {
                             GruposAdapter adapter = new GruposAdapter(listaGrupos, new GruposAdapter.RecyclerItemClick() {
                                 @Override
                                 public void itemClick(Grupo item) {
-                                    Toast.makeText(getContext(), "Click a -> " + item.getNombre(), Toast.LENGTH_SHORT).show();
+                                    getActivity()
+                                            .getSupportFragmentManager()
+                                            .beginTransaction()
+                                            //.setCustomAnimations(R.anim.nav_enter, R.anim.nav_exit)
+                                            .replace(R.id.fragment_container, ListaContraseñas.newInstance(item.getId()))
+                                            .addToBackStack(null)
+                                            .commit();
                                 }
                             });
 

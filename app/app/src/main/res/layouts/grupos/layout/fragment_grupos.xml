@@ -62,7 +62,7 @@
         android:layout_gravity="center"
         android:gravity="center"
         android:visibility="invisible"
-        android:text="No tienes ninguna comunicación"
+        android:text="@string/no_tienes_grupos"
         android:textSize="20dp"
         android:textStyle="bold"/>
 

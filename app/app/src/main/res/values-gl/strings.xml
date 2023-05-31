@@ -17,4 +17,6 @@
     <string name="navigation_drawer_close">Drawer pechado</string>
 
     <string name="no_tienes_grupos">Non tes ningún grupo...</string>
+    <string name="no_tienes_contraseñas">Non tes ningún contrasinal...</string>
+
 </resources>

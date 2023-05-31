@@ -23,5 +23,6 @@ urlpatterns = [
     path('login', login.login),
     path('registro', registro.registro),
     path('grupo', grupos.crear_grupo),
-    path('inicio', inicio.all)
+    path('grupo/<int:id>', grupos.get_grupo),
+    path('inicio', inicio.all),
 ]
