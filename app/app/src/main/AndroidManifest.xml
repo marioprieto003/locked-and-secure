@@ -44,6 +44,7 @@
         <activity android:name="com.afundacion.lockedandsecure.registro.Registro"/>
         <activity android:name="com.afundacion.lockedandsecure.grupos.CrearGrupo"/>
         <activity android:name="com.afundacion.lockedandsecure.inicio.Inicio"/>
+        <activity android:name="com.afundacion.lockedandsecure.crearContrasena.CrearContraseña"/>
     </application>
 
 </manifest>

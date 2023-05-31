@@ -5,7 +5,11 @@
     <string name="contraseña">Password</string>
 
     <!-- LOGIN -->
-    <string name="contraseña_error">Contraseña incorrecta</string>
+    <string name="contraseña_error">Contraseña incorrecta</string>      
+    <string name="usuario">User</string>
+    <string name="grupo">Group</string>
+
+    <string name="generar_contraseña">Generate password</string>
     <string name="nombre">Name</string>
 
     <string name="campo_obligatorio">Required field</string>

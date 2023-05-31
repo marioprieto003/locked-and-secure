@@ -7,6 +7,10 @@
 
     <!-- LOGIN -->
     <string name="contraseña_error">Contraseña incorrecta</string>
+    <string name="usuario">Usuario</string>
+    <string name="grupo">Grupo</string>
+
+    <string name="generar_contraseña">Generar contraseña</string>
     <string name="nombre">Nombre</string>
 
     <string name="campo_obligatorio">Campo obligatorio</string>
