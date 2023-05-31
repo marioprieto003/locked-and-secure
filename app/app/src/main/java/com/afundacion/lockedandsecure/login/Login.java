@@ -11,6 +11,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.afundacion.gestorcontrasenas.R;
+import com.afundacion.lockedandsecure.inicio.Inicio;
 import com.afundacion.lockedandsecure.registro.Registro;
 import com.afundacion.lockedandsecure.rest.Rest;
 import com.android.volley.Response;
@@ -74,8 +75,8 @@ public class Login extends AppCompatActivity {
                                 try {
                                     SharedPreferences sharedPreferences = getSharedPreferences("usuario", Context.MODE_PRIVATE);
                                     sharedPreferences.edit().putString("token", response.getString("token")).apply();
-                                    //Intent intent = new Intent(context, Inicio.class);
-                                    //startActivity(intent);
+                                    Intent intent = new Intent(context, Inicio.class);
+                                    startActivity(intent);
                                     finish();
                                 } catch (JSONException e) {
                                     throw new RuntimeException(e);

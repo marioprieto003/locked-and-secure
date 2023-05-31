@@ -42,6 +42,7 @@
         </activity>
 
         <activity android:name="com.afundacion.lockedandsecure.registro.Registro"/>
+        <activity android:name="com.afundacion.lockedandsecure.inicio.Inicio"/>
     </application>
 
 </manifest>
