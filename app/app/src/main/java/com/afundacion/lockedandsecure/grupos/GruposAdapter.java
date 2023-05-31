@@ -31,9 +31,9 @@ public class GruposAdapter extends RecyclerView.Adapter<GruposAdapter.ViewHolder
 
     @Override
     public void onBindViewHolder(@NonNull GruposAdapter.ViewHolder holder, int position) {
-        final Grupo item = lista.get(position);
+        final Grupo item  = lista.get(position);
         holder.nombreTextView.setText(lista.get(position).getNombre());
-        holder.tamañoTextView.setText(lista.get(position).getTamaño());
+        holder.cantidadTextView.setText(String.valueOf(lista.get(position).getTamaño()));
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -50,13 +50,13 @@ public class GruposAdapter extends RecyclerView.Adapter<GruposAdapter.ViewHolder
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
 
-        public TextView nombreTextView, tamañoTextView;
+        public TextView nombreTextView, cantidadTextView;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            nombreTextView = itemView.findViewById(R.id.nombreTextView);
-            tamañoTextView = itemView.findViewById(R.id.tamañoTextView);
+            nombreTextView = itemView.findViewById(R.id.grupoTextView);
+            cantidadTextView = itemView.findViewById(R.id.cantidadTextView);
         }
     }
 

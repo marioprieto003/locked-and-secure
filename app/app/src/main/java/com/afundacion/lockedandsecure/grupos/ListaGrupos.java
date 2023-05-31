@@ -27,6 +27,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class ListaGrupos extends Fragment {
@@ -55,7 +56,7 @@ public class ListaGrupos extends Fragment {
         shimmerFrameLayout = view.findViewById(R.id.preview);
         crearGrupo = view.findViewById(R.id.crearGrupoBoton);
         swipeRefresh = view.findViewById(R.id.swipeRefresh);
-
+        inicioTextView = view.findViewById(R.id.textViewInicio);
         // Setup del recylerView
         LinearLayoutManager manager = new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(manager);
@@ -100,11 +101,10 @@ public class ListaGrupos extends Fragment {
                 response -> {
                     if (response.length() != 0) {
                         try {
-                            JSONArray array = response.getJSONArray("lista");
-                            ArrayList<Grupo> lista = new ArrayList<>();
+                            ArrayList<Grupo> listaGrupos = new ArrayList<>();
 
-                            for (int i=0; i< array.length(); i++) {
-                                JSONArray arrayContraseñas = array.getJSONArray("contraseñas");
+                            for (int i=0; i< response.length(); i++) {
+                                JSONArray arrayContraseñas = response.getJSONObject(i).getJSONArray("contraseñas");
                                 ArrayList<Contraseña> listaContraseñas = new ArrayList<>();
 
                                 for (int j=0; j<arrayContraseñas.length(); j++) {
@@ -116,14 +116,19 @@ public class ListaGrupos extends Fragment {
                                             arrayContraseñas.getJSONObject(i).getString("fecha")
                                     ));
                                 }
-                                lista.add(new Grupo(
-                                        array.getInt("id"),
-                                        array.getInt("tamaño"),
-                                        response.getString("grupo"),
+                                listaGrupos.add(new Grupo(
+                                        response.getJSONObject(i).getInt("id"),
+                                        response.getJSONObject(i).getInt("tamaño"),
+                                        response.getJSONObject(i).getString("grupo"),
                                         listaContraseñas
                                 ));
                             }
-                            GruposAdapter adapter = new GruposAdapter(lista, new GruposAdapter.RecyclerItemClick() {
+
+                            for (int i=0; i<listaGrupos.size(); i++) {
+                                System.out.println(listaGrupos.get(i).getNombre());
+                                System.out.println(listaGrupos.get(i).getTamaño());
+                            }
+                            GruposAdapter adapter = new GruposAdapter(listaGrupos, new GruposAdapter.RecyclerItemClick() {
                                 @Override
                                 public void itemClick(Grupo item) {
                                     Toast.makeText(getContext(), "Click a -> " + item.getNombre(), Toast.LENGTH_SHORT).show();
@@ -147,7 +152,6 @@ public class ListaGrupos extends Fragment {
                     }
 
                     swipeRefresh.setRefreshing(false);
-
                 },
                 new Response.ErrorListener() {
                     @Override

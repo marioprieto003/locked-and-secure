@@ -47,5 +47,6 @@ def all(request):
             "contraseñas": lista_contraseñas_grupo
             }
         )
-        
-    return JsonResponse({"lista": lista_contraseñas_completa}, safe=False, status=200)
+
+    print(lista_contraseñas_completa)   
+    return JsonResponse(lista_contraseñas_completa, safe=False, status=200)
