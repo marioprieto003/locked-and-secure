@@ -106,33 +106,14 @@
         android:layout_marginTop="7dp"
         android:text="@string/generar_contraseña"/>
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/grupoTextInputLayout"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="32dp"
-        android:layout_marginTop="30dp"
-        app:endIconMode="clear_text"
-        app:helperTextTextColor="@color/mtrl_error"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/generarContraseñaCheckOut">
-
-        <AutoCompleteTextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/grupo"/>
-    </com.google.android.material.textfield.TextInputLayout>
-
     <com.google.android.material.button.MaterialButton
         android:id="@+id/generarContraseña"
         android:layout_width="wrap_content"
-        android:layout_height="46dp"
+        android:layout_height="?attr/maxButtonHeight"
         app:layout_constraintStart_toStartOf="@+id/emailTextInputLayout"
         app:layout_constraintEnd_toEndOf="@+id/emailTextInputLayout"
-        app:layout_constraintTop_toBottomOf="@+id/grupoTextInputLayout"
-        android:layout_marginTop="30dp"
+        app:layout_constraintTop_toBottomOf="@+id/contraseñaTextInputLayout"
+        android:layout_marginTop="100dp"
         android:backgroundTint="?attr/colorPrimary"
         android:text="@string/generar_contraseña"
         android:textColor="@color/white"/>
