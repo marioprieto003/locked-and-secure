@@ -10,4 +10,12 @@
     <string name="grupo">Grupo</string>
 
     <string name="generar_contraseña">Xerar contrasinal</string>
+
+    <!-- DRAWER -->
+    <string name="inicio">Inicio</string>
+    <string name="ajustes">Axustes</string>
+    <string name="navigation_drawer_open">Drawer aberto</string>
+    <string name="navigation_drawer_close">Drawer pechado</string>
+
+    <string name="no_tienes_grupos">Non tes ningún grupo...</string>
 </resources>

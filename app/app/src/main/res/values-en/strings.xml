@@ -10,4 +10,12 @@
     <string name="grupo">Group</string>
 
     <string name="generar_contraseña">Generate password</string>
+
+    <!-- DRAWER -->
+    <string name="inicio">Home</string>
+    <string name="ajustes">Settings</string>
+    <string name="navigation_drawer_open">Drawer open</string>
+    <string name="navigation_drawer_close">Drawer closed</string>
+
+    <string name="no_tienes_grupos">You don\'t have any group...</string>
 </resources>

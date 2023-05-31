@@ -14,4 +14,8 @@
     <color name="medium">#ff8f00</color>
     <color name="strong">#FCCA3F</color>
     <color name="bulletproof">#00c853</color>
+
+    <color name="grey">#808080</color>
+    <color name="grey_200">#0D808080</color>
+    <color name="grey_500">#4D808080</color>
 </resources>

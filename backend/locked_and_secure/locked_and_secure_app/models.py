@@ -20,13 +20,10 @@ class Contraseñas(models.Model):
     email = models.EmailField(null=True)
     usuario = models.TextField(null=True)
     fecha = models.DateField(default=timezone.now())
-    
-   
         
 class Grupos(models.Model):
     # id auto generado
+    usuario = models.ForeignKey('Usuarios', on_delete=models.CASCADE, default=None)
     nombre = models.TextField()
-    imagen = models.TextField()  
-
-    
+    imagen = models.TextField(null=True, default=None)
         
