@@ -7,6 +7,9 @@
 
     <!-- LOGIN -->
     <string name="contraseña_error">Contraseña incorrecta</string>
+    <string name="nombre">Nombre</string>
+
+    <string name="campo_obligatorio">Campo obligatorio</string>
 
     <!-- DRAWER -->
     <string name="inicio">Inicio</string>

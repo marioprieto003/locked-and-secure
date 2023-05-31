@@ -34,7 +34,6 @@ public class Login extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_login);
-        getWindow().setNavigationBarColor(getResources().getColor(R.color.white));
         //getWindow().setStatusBarColor(getResources().getColor(R.color.white));
 
         email = findViewById(R.id.emailTextInput);

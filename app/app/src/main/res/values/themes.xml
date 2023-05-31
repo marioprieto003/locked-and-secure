@@ -37,4 +37,12 @@
         <item name="android:fontFamily">source_sans_pro</item>
         <item name="android:textColor">@color/white</item>
     </style>
+
+    <style name="AppToolbar" parent="ThemeOverlay.AppCompat.ActionBar">
+        <item name="android:textColorPrimary">@android:color/white</item>
+        <item name="android:textColorSecondary">@android:color/white</item>
+        <item name="fontFamily">source_sans_pro</item>
+    </style>
+
+
 </resources>
