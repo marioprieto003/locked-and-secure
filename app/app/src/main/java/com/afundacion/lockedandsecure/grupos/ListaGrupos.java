@@ -75,8 +75,8 @@ public class ListaGrupos extends Fragment {
         @Override
         public void onClick(View v) {
             //Bundle
-            //Intent intent = new Intent(getContext(), CrearGrupos.class)
-            //startActivity(intent)
+            Intent intent = new Intent(getContext(), CrearGrupo.class);
+            startActivity(intent);
         }
     };
 

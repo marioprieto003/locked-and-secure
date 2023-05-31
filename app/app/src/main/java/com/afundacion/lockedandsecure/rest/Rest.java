@@ -82,8 +82,18 @@ public class Rest {
         ));
     }
 
+    public void crearGrupo(Response.Listener<JSONObject> onResponse, Response.ErrorListener onErrorResponse, JSONObject body) {
+        queue = Volley.newRequestQueue(context);
+        queue.add(new JsonObjectRequestWithCustomAuth(
+                Request.Method.POST,
+                BASE_URL + "/grupo",
+                body,onResponse,
+                onErrorResponse,
+                context
+        ));
+    }
 
-    public void crearContraseña(Response.Listener<JSONObject> onResponse, Response.ErrorListener onErrorResponse, JSONObject body) {
+  public void crearContraseña(Response.Listener<JSONObject> onResponse, Response.ErrorListener onErrorResponse, JSONObject body) {
         queue = Volley.newRequestQueue(context);
         queue.add(new JsonObjectRequestWithCustomAuth(
                 Request.Method.POST,
@@ -94,17 +104,18 @@ public class Rest {
                 context
         ));
     }
-        public void inicio (Response.Listener < JSONArray > onResponse, Response.ErrorListener onErrorResponse){
-            queue = Volley.newRequestQueue(context);
-            queue.add(new JsonArrayRequestWithCustomAuth(
-                    Request.Method.GET,
-                    BASE_URL + "/inicio",
-                    null,
-                    onResponse,
-                    onErrorResponse,
-                    context
-            ));
-        }
+  
+    public void inicio(Response.Listener<JSONArray> onResponse, Response.ErrorListener onErrorResponse) {
+        queue = Volley.newRequestQueue(context);
+        queue.add(new JsonArrayRequestWithCustomAuth(
+                Request.Method.GET,
+                BASE_URL + "/inicio",
+                null,
+                onResponse,
+                onErrorResponse,
+                context
+        ));
+    }
 
 
     public void generarContraseña(Response.Listener < JSONObject > onResponse, Response.ErrorListener onErrorResponse) {

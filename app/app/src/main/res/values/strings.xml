@@ -11,6 +11,9 @@
     <string name="grupo">Grupo</string>
 
     <string name="generar_contraseña">Generar contraseña</string>
+    <string name="nombre">Nombre</string>
+
+    <string name="campo_obligatorio">Campo obligatorio</string>
 
     <!-- DRAWER -->
     <string name="inicio">Inicio</string>
