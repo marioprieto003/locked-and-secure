@@ -33,10 +33,7 @@ android {
                     'src/main/res/layouts/login',
                     'src/main/res/layouts/registro',
                     'src/main/res/layouts/grupos',
-<<<<<<< HEAD
-=======
                     'src/main/res/layouts/inicio',
->>>>>>> main
                     'src/main/res/layouts',
                     'src/main/res'
             ]
