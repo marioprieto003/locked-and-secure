@@ -14,8 +14,8 @@ class Usuarios(models.Model):
             
 class Contraseñas(models.Model):
     # id auto generado
-    id_usuario = models.ForeignKey('Usuarios', on_delete=models.CASCADE)
-    id_grupo = models.ForeignKey('Grupos', on_delete=models.CASCADE)
+    id_usuario = models.ForeignKey('Usuarios', on_delete=models.CASCADE, default=None, null=False)
+    id_grupo = models.ForeignKey('Grupos', on_delete=models.CASCADE, default=None, null=False)
     contraseña = models.TextField()
     email = models.EmailField(null=True)
     usuario = models.TextField(null=True)
@@ -23,9 +23,7 @@ class Contraseñas(models.Model):
         
 class Grupos(models.Model):
     # id auto generado
-    usuario = models.ForeignKey('Usuarios', on_delete=models.CASCADE, default=None)
+    usuario = models.ForeignKey('Usuarios', on_delete=models.CASCADE, default=None, null=False)
     nombre = models.TextField()
-    imagen = models.TextField()
-
-    
+    imagen = models.TextField(null=True, default=None)
         

@@ -10,4 +10,12 @@
     <string name="nombre">Nombre</string>
 
     <string name="campo_obligatorio">Campo obligatorio</string>
+
+    <!-- DRAWER -->
+    <string name="inicio">Inicio</string>
+    <string name="ajustes">Ajustes</string>
+    <string name="navigation_drawer_open">Drawer abierto</string>
+    <string name="navigation_drawer_close">Drawer cerrado</string>
+
+    <string name="no_tienes_grupos">No tienes ningún grupo...</string>
 </resources>

@@ -8,9 +8,11 @@ import androidx.annotation.Nullable;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
+import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.util.HashMap;
@@ -80,12 +82,24 @@ public class Rest {
         ));
     }
 
+
     public void crearGrupo(Response.Listener<JSONObject> onResponse, Response.ErrorListener onErrorResponse, JSONObject body) {
         queue = Volley.newRequestQueue(context);
         queue.add(new JsonObjectRequestWithCustomAuth(
                 Request.Method.POST,
                 BASE_URL + "/grupo",
-                body,
+                body,onResponse,
+                onErrorResponse,
+                context
+        ));
+    }
+
+    public void inicio(Response.Listener<JSONArray> onResponse, Response.ErrorListener onErrorResponse) {
+        queue = Volley.newRequestQueue(context);
+        queue.add(new JsonArrayRequestWithCustomAuth(
+                Request.Method.GET,
+                BASE_URL + "/inicio",
+                null,
                 onResponse,
                 onErrorResponse,
                 context
@@ -99,6 +113,30 @@ public class Rest {
                                                String url,
                                                @Nullable JSONObject jsonRequest,
                                                Response.Listener<JSONObject> listener,
+                                               @Nullable Response.ErrorListener errorListener,
+                                               Context context) {
+            super(method, url, jsonRequest, listener, errorListener);
+            this.context = context;
+        }
+
+        @Override
+        public Map<String, String> getHeaders() {
+            SharedPreferences preferences = context.getSharedPreferences("usuario", Context.MODE_PRIVATE);
+            String tokenSesion = preferences.getString("token", null);
+
+            HashMap<String, String> myHeaders = new HashMap<>();
+            myHeaders.put("token", tokenSesion);
+            return myHeaders;
+        }
+    }
+
+    class JsonArrayRequestWithCustomAuth extends JsonArrayRequest {
+        private Context context;
+
+        public JsonArrayRequestWithCustomAuth(int method,
+                                               String url,
+                                               @Nullable JSONArray jsonRequest,
+                                               Response.Listener<JSONArray> listener,
                                                @Nullable Response.ErrorListener errorListener,
                                                Context context) {
             super(method, url, jsonRequest, listener, errorListener);
