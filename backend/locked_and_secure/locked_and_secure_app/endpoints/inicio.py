@@ -7,6 +7,7 @@ def all(request):
     if request.method != 'GET':
         return JsonResponse({"error": "Método no soportado"}, status=405)
        
+   
     try:
         token = request.headers['token']
     except KeyError:
@@ -46,5 +47,5 @@ def all(request):
             "contraseñas": lista_contraseñas_grupo
             }
         )
-  
-    return JsonResponse(lista_contraseñas_completa, safe=False, status=200)
+    
+    return JsonResponse({"lista": lista_contraseñas_completa}, safe=False, status=200)

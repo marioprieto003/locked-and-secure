@@ -25,4 +25,6 @@ urlpatterns = [
     path('contraseña', contraseña.contraseña),
     path('inicio', inicio.all),
     path('grupo', grupos.crear_grupo),
+    path('grupo/<int:id>', grupos.get_grupo),
+    path('inicio', inicio.all),
 ]
