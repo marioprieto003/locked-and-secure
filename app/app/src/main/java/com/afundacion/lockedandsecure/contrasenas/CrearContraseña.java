@@ -1,4 +1,12 @@
-package com.afundacion.lockedandsecure.crearContrasena;
+/*
+ * *
+ *  * Created by mprieto on 1/6/23 9:12
+ *  * Copyright (c) 2023 . All rights reserved.
+ *  * Last modified 1/6/23 9:09
+ *
+ */
+
+package com.afundacion.lockedandsecure.contrasenas;
 
 import android.app.Dialog;
 import android.content.Context;
@@ -17,20 +25,15 @@ import android.view.Window;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import androidx.core.content.ContextCompat;
-import androidx.lifecycle.Observer;
 
 import com.afundacion.gestorcontrasenas.R;
 import com.afundacion.lockedandsecure.rest.Rest;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.zxing.BarcodeFormat;
@@ -39,13 +42,10 @@ import com.google.zxing.common.BitMatrix;
 import com.google.zxing.qrcode.QRCodeWriter;
 
 import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.util.regex.Pattern;
 
 public class CrearContraseña extends AppCompatActivity {
     private TextInputLayout emailLayout, contraseñaLayout, usuarioLayout, nombreLayout;
-    private TextInputEditText email, contraseña, usuario, nombre;
+    private TextInputEditText email, contraseñaTextInput, usuario, nombre;
     private Button generarContraseña, qrBoton;
     private View fortalezaContraseña;
     private Toolbar toolbar;
@@ -64,10 +64,10 @@ public class CrearContraseña extends AppCompatActivity {
         qrBoton = findViewById(R.id.qrBoton);
         qrBoton.setOnClickListener(qrListener);
 
-        contraseña = findViewById(R.id.contraseñaTextInput);
+        contraseñaTextInput = findViewById(R.id.contraseñaTextInput);
         contraseñaLayout = findViewById(R.id.contraseñaTextInputLayout);
         fortalezaContraseña = findViewById(R.id.fortaleza_contrasena);
-        contraseña.addTextChangedListener(new TextWatcher() {
+        contraseñaTextInput.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
@@ -85,7 +85,14 @@ public class CrearContraseña extends AppCompatActivity {
             }
         });
 
+        if (getIntent().getSerializableExtra("contraseña", Contraseña.class) != null) {
+            contraseñaTextInput.setEnabled(false);
+            Contraseña contraseña = getIntent().getSerializableExtra("contraseña", Contraseña.class);
 
+            email.setText(contraseña.getEmail());
+            usuario.setText(contraseña.getUsuario());
+            contraseñaTextInput.setText(contraseña.getContraseña());
+        }
     }
 
     View.OnClickListener generarContraseñaListener = new View.OnClickListener() {
@@ -96,7 +103,7 @@ public class CrearContraseña extends AppCompatActivity {
             rest.generarContraseña(
                     response ->  {
                         try {
-                            contraseña.setText(response.getString("contraseña"));
+                            contraseñaTextInput.setText(response.getString("contraseña"));
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
@@ -124,7 +131,7 @@ public class CrearContraseña extends AppCompatActivity {
 
             ImageView imageView = new ImageView(context);
             try {
-                imageView.setImageBitmap(encodeAsBitmap(contraseña.getText().toString()));
+                imageView.setImageBitmap(encodeAsBitmap(contraseñaTextInput.getText().toString()));
             } catch (WriterException e) {
                 e.printStackTrace();
             }

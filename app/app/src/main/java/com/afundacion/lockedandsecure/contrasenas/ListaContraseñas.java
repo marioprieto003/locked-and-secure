@@ -6,7 +6,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -16,16 +15,10 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.afundacion.gestorcontrasenas.R;
-import com.afundacion.lockedandsecure.grupos.CrearGrupo;
-import com.afundacion.lockedandsecure.grupos.Grupo;
-import com.afundacion.lockedandsecure.grupos.GruposAdapter;
 import com.afundacion.lockedandsecure.rest.Rest;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
 import com.facebook.shimmer.ShimmerFrameLayout;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 
 import java.util.ArrayList;
@@ -39,6 +32,8 @@ public class ListaContraseñas extends Fragment {
     private ShimmerFrameLayout shimmerFrameLayout;
     private TextView inicioTextView;
     private static int idGrupo;
+
+    // Constructor vacío
     public ListaContraseñas() {}
 
     // "Constructor" del fragment por el que recibe el id del grupo del que tiene que buscar las contraseñas
@@ -79,9 +74,8 @@ public class ListaContraseñas extends Fragment {
     View.OnClickListener crearContraseñaListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            //Bundle
-            //Intent intent = new Intent(getContext(), CrearContraseña.class);
-            //startActivity(intent);
+            Intent intent = new Intent(getContext(), CrearContraseña.class);
+            startActivity(intent);
         }
     };
 
@@ -121,8 +115,9 @@ public class ListaContraseñas extends Fragment {
 
                             // ItemClickListener del recyclerView de contraseñas
                             ContraseñasAdapter adapter = new ContraseñasAdapter(listaContraseñas, item -> {
-                                //Intent intent = new Intent(getContext(), CrearContraseña.class);
-                                //startActivity(intent);
+                                Intent intent = new Intent(getContext(), CrearContraseña.class);
+                                intent.putExtra("contraseña", item);
+                                startActivity(intent);
                             });
 
                             recyclerView.setVisibility(View.VISIBLE);

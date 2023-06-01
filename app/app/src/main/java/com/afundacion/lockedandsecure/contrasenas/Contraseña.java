@@ -1,3 +1,11 @@
+/*
+ * *
+ *  * Created by mprieto on 1/6/23 9:13
+ *  * Copyright (c) 2023 . All rights reserved.
+ *  * Last modified 1/6/23 8:55
+ *
+ */
+
 package com.afundacion.lockedandsecure.contrasenas;
 
 import java.io.Serializable;
@@ -13,6 +21,7 @@ public class Contraseña implements Serializable {
         this.usuario = usuario;
         this.fecha = fecha;
     }
+
 
     public int getId() {
         return id;
