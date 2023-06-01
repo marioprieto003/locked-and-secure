@@ -9,8 +9,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toTopOf="parent"
-        android:background="?attr/colorPrimary"
-        android:minHeight="?attr/actionBarSize"
+        android:background="@color/purple_500"
+        android:minHeight="48dp"
         app:layout_anchorGravity="center"/>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -67,7 +67,7 @@
         android:layout_marginHorizontal="32dp"
         android:layout_marginTop="30dp"
         app:endIconMode="password_toggle"
-        app:endIconTint="?attr/colorPrimary"
+        app:endIconTint="@color/purple_500"
         app:errorEnabled="true"
         app:helperTextEnabled="true"
         app:helperTextTextColor="@color/mtrl_error"
@@ -97,36 +97,25 @@
         app:layout_constraintStart_toStartOf="@+id/contraseñaTextInputLayout"
         app:layout_constraintTop_toBottomOf="@+id/contraseñaTextInputLayout" />
 
-    <com.google.android.material.checkbox.MaterialCheckBox
-        android:id="@+id/generarContraseñaCheckOut"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/fortaleza_contrasena"
-        app:layout_constraintStart_toStartOf="@+id/contraseñaTextInputLayout"
-        android:layout_marginTop="7dp"
-        android:text="@string/generar_contraseña"/>
-
     <com.google.android.material.button.MaterialButton
         android:id="@+id/generarContraseña"
         android:layout_width="wrap_content"
-        android:layout_height="?attr/maxButtonHeight"
+        android:layout_height="48dp"
         app:layout_constraintStart_toStartOf="@+id/emailTextInputLayout"
         app:layout_constraintEnd_toEndOf="@+id/emailTextInputLayout"
         app:layout_constraintTop_toBottomOf="@+id/contraseñaTextInputLayout"
         android:layout_marginTop="100dp"
-        android:backgroundTint="?attr/colorPrimary"
-        android:text="@string/generar_contraseña"
-        android:textColor="@color/white"/>
+        android:backgroundTint="@color/purple_500"
+        android:text="@string/generar_contraseña"/>
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/qrBoton"
         android:layout_width="wrap_content"
-        android:layout_height="46dp"
+        android:layout_height="48dp"
         app:layout_constraintStart_toStartOf="@+id/generarContraseña"
         app:layout_constraintEnd_toEndOf="@+id/generarContraseña"
         app:layout_constraintTop_toBottomOf="@+id/generarContraseña"
         android:layout_marginTop="30dp"
-        android:backgroundTint="?attr/colorPrimary"
-        android:text="QR"
-        android:textColor="@color/white"/>
+        android:backgroundTint="@color/purple_500"
+        android:text="QR"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

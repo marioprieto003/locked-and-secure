@@ -1,7 +1,9 @@
-from Crypto.Cipher import AES
-from Crypto.Hash import SHA256
-from Crypto import Random
+#from Crypto.Cipher import AES
+#from Crypto.Hash import SHA256
+#from Crypto import Random
+from cryptography.fernet import Fernet
 
+'''
 def encrypt(key, source, encode=True):
     key = SHA256.new(key).digest()  # use SHA-256 over our key to get a proper-sized AES key
     IV = Random.new().read(AES.block_size)  # generate IV
@@ -22,3 +24,16 @@ def decrypt(key, source, decode=True):
     if data[-padding:] != bytes([padding]) * padding:  # Python 2.x: chr(padding) * padding
         raise ValueError("Invalid padding...")
     return data[:-padding]  # remove the padding
+'''
+
+def encrypt_1(key, text):
+    key = key.decode('utf-8')
+    f = Fernet(key)
+
+    return f.encrypt(text)
+
+def decrypt_1(key, text):
+    key = key.decode('utf-8')
+    f = Fernet(key)
+
+    return f.decrypt(text)

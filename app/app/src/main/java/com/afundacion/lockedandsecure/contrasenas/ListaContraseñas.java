@@ -115,7 +115,7 @@ public class ListaContraseñas extends Fragment {
 
                             // ItemClickListener del recyclerView de contraseñas
                             ContraseñasAdapter adapter = new ContraseñasAdapter(listaContraseñas, item -> {
-                                Intent intent = new Intent(getContext(), CrearContraseña.class);
+                                Intent intent = new Intent(getContext(), EditarContraseña.class);
                                 intent.putExtra("contraseña", item);
                                 startActivity(intent);
                             });

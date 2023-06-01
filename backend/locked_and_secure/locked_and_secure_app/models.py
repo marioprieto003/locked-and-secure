@@ -19,7 +19,7 @@ class Contraseñas(models.Model):
     contraseña = models.TextField()
     email = models.EmailField(null=True)
     usuario = models.TextField(null=True)
-    fecha = models.DateField(default=timezone.now())
+    fecha = models.DateField(default=timezone.now)
         
 class Grupos(models.Model):
     # id auto generado

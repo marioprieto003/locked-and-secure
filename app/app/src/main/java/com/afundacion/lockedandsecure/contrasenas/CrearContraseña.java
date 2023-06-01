@@ -45,7 +45,7 @@ import org.json.JSONException;
 
 public class CrearContraseña extends AppCompatActivity {
     private TextInputLayout emailLayout, contraseñaLayout, usuarioLayout, nombreLayout;
-    private TextInputEditText email, contraseñaTextInput, usuario, nombre;
+    private TextInputEditText email, contraseñaTextInput, usuario;
     private Button generarContraseña, qrBoton;
     private View fortalezaContraseña;
     private Toolbar toolbar;
@@ -60,6 +60,9 @@ public class CrearContraseña extends AppCompatActivity {
 
         generarContraseña = findViewById(R.id.generarContraseña);
         generarContraseña.setOnClickListener(generarContraseñaListener);
+
+        email = findViewById(R.id.emailTextInput);
+        usuario = findViewById(R.id.usuarioTextInput);
 
         qrBoton = findViewById(R.id.qrBoton);
         qrBoton.setOnClickListener(qrListener);
@@ -85,14 +88,7 @@ public class CrearContraseña extends AppCompatActivity {
             }
         });
 
-        if (getIntent().getSerializableExtra("contraseña", Contraseña.class) != null) {
-            contraseñaTextInput.setEnabled(false);
-            Contraseña contraseña = getIntent().getSerializableExtra("contraseña", Contraseña.class);
 
-            email.setText(contraseña.getEmail());
-            usuario.setText(contraseña.getUsuario());
-            contraseñaTextInput.setText(contraseña.getContraseña());
-        }
     }
 
     View.OnClickListener generarContraseñaListener = new View.OnClickListener() {

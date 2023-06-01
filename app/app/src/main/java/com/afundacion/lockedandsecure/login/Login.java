@@ -19,8 +19,14 @@ import com.android.volley.VolleyError;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 
+import androidx.security.crypto.EncryptedSharedPreferences;
+import androidx.security.crypto.MasterKeys;
+
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.io.IOException;
+import java.security.GeneralSecurityException;
 
 public class Login extends AppCompatActivity {
     private TextInputLayout emailLayout, contraseñaLayout;
@@ -45,6 +51,26 @@ public class Login extends AppCompatActivity {
         inicioSesionBoton.setOnClickListener(inicioSesionListener);
         registrarBoton = findViewById(R.id.registrarBoton);
         registrarBoton.setOnClickListener(registrarListener);
+
+
+        /* MOVER A LA CLASE LAUNCHER */
+        String masterKey = null;
+        try {
+            masterKey = MasterKeys.getOrCreate(MasterKeys.AES256_GCM_SPEC);
+            SharedPreferences sharedPreferencesEncrypted = EncryptedSharedPreferences.create(
+                    "clave",
+                    masterKey,
+                    context,
+                    EncryptedSharedPreferences.PrefKeyEncryptionScheme.AES256_SIV,
+                    EncryptedSharedPreferences.PrefValueEncryptionScheme.AES256_GCM
+            );
+
+        } catch (GeneralSecurityException e) {
+            throw new RuntimeException(e);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
     }
 
     View.OnClickListener inicioSesionListener = new View.OnClickListener() {
@@ -72,12 +98,29 @@ public class Login extends AppCompatActivity {
                             @Override
                             public void onResponse(JSONObject response) {
                                 try {
+                                    // Guardado del token de sesión en las Shared Preferences
                                     SharedPreferences sharedPreferences = getSharedPreferences("usuario", Context.MODE_PRIVATE);
                                     sharedPreferences.edit().putString("token", response.getString("token")).apply();
+
+                                    // Guardado de la clave de encriptado en las EncyptedSharedPreferences
+                                    String masterKey = MasterKeys.getOrCreate(MasterKeys.AES256_GCM_SPEC);
+                                    SharedPreferences sharedPreferencesEncrypted = EncryptedSharedPreferences.create(
+                                            "clave",
+                                            masterKey,
+                                            context,
+                                            EncryptedSharedPreferences.PrefKeyEncryptionScheme.AES256_SIV,
+                                            EncryptedSharedPreferences.PrefValueEncryptionScheme.AES256_GCM
+                                    );
+                                    sharedPreferencesEncrypted.edit().putString("clave", response.getString("clave"));
+
                                     Intent intent = new Intent(context, Inicio.class);
                                     startActivity(intent);
                                     finish();
                                 } catch (JSONException e) {
+                                    throw new RuntimeException(e);
+                                } catch (GeneralSecurityException e) {
+                                    throw new RuntimeException(e);
+                                } catch (IOException e) {
                                     throw new RuntimeException(e);
                                 }
                             }

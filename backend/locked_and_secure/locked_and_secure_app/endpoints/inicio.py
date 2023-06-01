@@ -1,6 +1,7 @@
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from locked_and_secure_app.models import Usuarios, Grupos, Contraseñas
+from locked_and_secure_app.endpoints.funciones import decrypt_1
 import json, bcrypt, secrets
 
 def all(request):
@@ -10,6 +11,7 @@ def all(request):
    
     try:
         token = request.headers['token']
+        clave = request.headers['clave']
     except KeyError:
         return JsonResponse({"error": "Faltán parámetros"}, status=400)
     
@@ -33,7 +35,7 @@ def all(request):
              lista_contraseñas_grupo.append(
                  {
                     "id": int(contraseña.id),
-                    "contraseña": contraseña.contraseña,
+                    "contraseña": decrypt_1(usuario.clave, contraseña.contraseña),
                     "email": contraseña.email,
                     "usuario": contraseña.usuario,
                     "fecha": contraseña.fecha
@@ -47,5 +49,5 @@ def all(request):
             "contraseñas": lista_contraseñas_grupo
             }
         )
-    
-    return JsonResponse({"lista": lista_contraseñas_completa}, safe=False, status=200)
+        
+    return JsonResponse(lista_contraseñas_completa, safe=False, status=200)
