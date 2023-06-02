@@ -23,7 +23,6 @@ def contraseña(request):
             return JsonResponse({"error": "Faltán parámetros"}, status=400)
         
         usuario_bd = Usuarios.objects.get(token_sesion=token)
-        print(request.headers)
         if clave != usuario_bd.clave:
             return JsonResponse({"error": "Clave no válida"}, status=401)
         

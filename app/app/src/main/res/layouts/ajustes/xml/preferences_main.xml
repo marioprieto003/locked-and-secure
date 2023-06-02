@@ -1,0 +1,19 @@
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+<Preference
+    android:key="cuenta"
+    android:title="@string/cuenta"
+    android:summary="@string/cuenta_descripcion"
+    android:icon="@drawable/ic_cuenta"/>
+
+    <Preference
+    android:key="seguridad"
+    android:title="@string/seguridad"
+    android:summary="@string/seguridad_descripcion"
+    android:icon="@drawable/ic_seguridad"/>
+
+    <Preference
+    android:key="recursos_adicionales"
+    android:title="@string/recursos"
+    android:summary="@string/recursos_descripcion"
+    android:icon="@drawable/ic_info" />
+</PreferenceScreen>

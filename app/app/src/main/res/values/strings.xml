@@ -23,4 +23,12 @@
 
     <string name="no_tienes_grupos">No tienes ningún grupo...</string>
     <string name="no_tienes_contraseñas">No tienes ninguna contraseña...</string>
+
+    <!-- AJUSTES -->
+    <string name="cuenta">Mi Cuenta</string>
+    <string name="cuenta_descripcion">Ver cuenta</string>
+    <string name="seguridad">Seguridad</string>
+    <string name="seguridad_descripcion">Cambiar contraseña, acceso biométrico...</string>
+    <string name="recursos">Recursos adicionales</string>
+    <string name="recursos_descripcion">Ver recursos adicionales</string>
 </resources>

@@ -22,4 +22,12 @@
 
     <string name="no_tienes_grupos">You don\'t have any group...</string>
     <string name="no_tienes_contraseñas">You don\'t have any password...</string>
+
+    <!-- AJUSTES -->
+    <string name="cuenta">My account</string>
+    <string name="cuenta_descripcion">see my account</string>
+    <string name="seguridad">Security</string>
+    <string name="seguridad_descripcion">Change password, biometric access...</string>
+    <string name="recursos">Aditional resources</string>
+    <string name="recursos_descripcion">See aditional resources</string>
 </resources>

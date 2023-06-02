@@ -31,8 +31,6 @@ def all(request):
         # Obtenemos las contraseñas que el usuario ha creado en cada grupo
         contraseñas = Contraseñas.objects.filter(id_grupo=grupo)
         
-        import sys 
-        print(sys.path)
         lista_contraseñas_grupo = []
         for contraseña in contraseñas:
              lista_contraseñas_grupo.append(

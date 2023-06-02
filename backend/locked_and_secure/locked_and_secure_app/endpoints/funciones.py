@@ -1,6 +1,5 @@
 #from Crypto.Cipher import AES
 #from Crypto.Hash import SHA256
-from 
 from cryptography.fernet import Fernet
 import base64
 '''

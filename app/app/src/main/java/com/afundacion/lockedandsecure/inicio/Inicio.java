@@ -1,5 +1,7 @@
 package com.afundacion.lockedandsecure.inicio;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -15,6 +17,7 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 
 import com.afundacion.gestorcontrasenas.R;
+import com.afundacion.lockedandsecure.ajustes.Ajustes;
 import com.afundacion.lockedandsecure.grupos.ListaGrupos;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
@@ -23,6 +26,7 @@ import com.google.android.material.navigation.NavigationView;
 public class Inicio extends AppCompatActivity {
     private BottomNavigationView bottomNavigationView;
     private Toolbar toolbar;
+    private Context context = this;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -53,6 +57,9 @@ public class Inicio extends AppCompatActivity {
             switch (item.getItemId()) {
                 case R.id.nav_item_inicio:
                     cambiarFragment(ListaGrupos.newInstance());
+                    return true;
+                case R.id.nav_item_ajustes:
+                    startActivity(new Intent(context, Ajustes.class));
                     return true;
             }
             return false;

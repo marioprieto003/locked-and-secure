@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/navigation_ajustes"
+    app:startDestination="@id/ajustes">
+
+    <fragment
+        android:id="@+id/ajustes"
+        android:name="com.afundacion.lockedandsecure.ajustes.Ajustes"
+        android:label="Ajustes" >
+        <action
+            android:id="@+id/action_ajustes_to_cuentaFragment"
+            app:destination="@id/cuentaFragment" />
+        <action
+            android:id="@+id/action_ajustes_to_seguridadFragment"
+            app:destination="@id/seguridadFragment" />
+        <action
+            android:id="@+id/action_ajustes_to_recursosFragment"
+            app:destination="@id/recursosFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/cuentaFragment"
+        android:name="com.afundacion.lockedandsecure.ajustes.CuentaFragment"
+        android:label="CuentaFragment" >
+        <action
+            android:id="@+id/action_cuentaFragment_to_ajustes"
+            app:destination="@id/ajustes" />
+    </fragment>
+    <fragment
+        android:id="@+id/seguridadFragment"
+        android:name="com.afundacion.lockedandsecure.ajustes.SeguridadFragment"
+        android:label="SeguridadFragment" >
+        <action
+            android:id="@+id/action_seguridadFragment_to_ajustes"
+            app:destination="@id/ajustes" />
+    </fragment>
+    <fragment
+        android:id="@+id/recursosFragment"
+        android:name="com.afundacion.lockedandsecure.ajustes.RecursosFragment"
+        android:label="RecursosFragment" >
+        <action
+            android:id="@+id/action_recursosFragment_to_ajustes"
+            app:destination="@id/ajustes" />
+    </fragment>
+</navigation>
