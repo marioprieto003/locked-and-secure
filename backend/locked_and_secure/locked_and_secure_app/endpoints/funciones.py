@@ -1,6 +1,6 @@
 #from Crypto.Cipher import AES
 #from Crypto.Hash import SHA256
-#from Crypto import Random
+from 
 from cryptography.fernet import Fernet
 import base64
 '''
@@ -27,13 +27,13 @@ def decrypt(key, source, decode=True):
 '''
 
 def encrypt_1(key, text):
-    print(key)
-    #key = base64.urlsafe_b64encode(key.ljust(32)[:32])
-    f = Fernet(key)
-
+    print(base64.urlsafe_b64encode(key.encode('utf-8')))
+    f = Fernet(base64.urlsafe_b64encode(key.encode('utf-8')))
+  
     return f.encrypt(text)
 
 def decrypt_1(key, text):
-    f = Fernet(key)
+    print(base64.urlsafe_b64encode(key.encode('utf-8')))
+    f = Fernet(base64.urlsafe_b64encode(key.encode('utf-8')))
 
     return f.decrypt(text)

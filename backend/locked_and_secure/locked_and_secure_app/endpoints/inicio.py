@@ -2,7 +2,8 @@ from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from locked_and_secure_app.models import Usuarios, Grupos, Contraseñas
 from locked_and_secure_app.endpoints.funciones import decrypt_1
-import json, bcrypt, secrets
+from cryptography.fernet import Fernet
+import json, bcrypt, secrets, base64
 
 def all(request):
     if request.method != 'GET':
@@ -30,12 +31,14 @@ def all(request):
         # Obtenemos las contraseñas que el usuario ha creado en cada grupo
         contraseñas = Contraseñas.objects.filter(id_grupo=grupo)
         
+        import sys 
+        print(sys.path)
         lista_contraseñas_grupo = []
         for contraseña in contraseñas:
              lista_contraseñas_grupo.append(
                  {
                     "id": int(contraseña.id),
-                    "contraseña": decrypt_1(usuario.clave, contraseña.contraseña),
+                    "contraseña": contraseña.contraseña,
                     "email": contraseña.email,
                     "usuario": contraseña.usuario,
                     "fecha": contraseña.fecha
