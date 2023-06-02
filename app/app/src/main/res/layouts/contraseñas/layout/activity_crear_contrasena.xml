@@ -11,7 +11,9 @@
         app:layout_constraintTop_toTopOf="parent"
         android:background="@color/purple_500"
         android:minHeight="48dp"
-        app:layout_anchorGravity="center"/>
+        app:layout_anchorGravity="center"
+        android:theme="@style/AppToolbar"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/emailTextInputLayout"

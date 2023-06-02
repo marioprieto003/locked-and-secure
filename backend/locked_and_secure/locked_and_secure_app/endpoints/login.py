@@ -27,7 +27,7 @@ def login(request):
         # TEMPORAL | LA COMPROBACION Y CREACION DE LA CLAVE IRA EN EL INICIO
         if usuario.clave == None:
             clave = Fernet.generate_key()
-            usuario.clave=clave.decode('utf-8')
+            usuario.clave=clave
 
         usuario.token_sesion=token_sesion
         usuario.save()

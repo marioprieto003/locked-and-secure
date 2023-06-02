@@ -34,6 +34,7 @@ import androidx.appcompat.widget.Toolbar;
 
 import com.afundacion.gestorcontrasenas.R;
 import com.afundacion.lockedandsecure.rest.Rest;
+import com.android.volley.Response;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.zxing.BarcodeFormat;
@@ -42,6 +43,7 @@ import com.google.zxing.common.BitMatrix;
 import com.google.zxing.qrcode.QRCodeWriter;
 
 import org.json.JSONException;
+import org.json.JSONObject;
 
 public class CrearContraseña extends AppCompatActivity {
     private TextInputLayout emailLayout, contraseñaLayout, usuarioLayout, nombreLayout;
@@ -164,8 +166,38 @@ public class CrearContraseña extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if (item.getItemId() == R.id.guardar) {
-            Toast.makeText(context, "click", Toast.LENGTH_SHORT).show();
-            return true;
+
+            if (email.getText().toString().length() < 1) {
+                emailLayout.setError(getResources().getString(R.string.campo_obligatorio));
+            } else if (usuario.getText().toString().length() < 1) {
+                usuarioLayout.setError(getResources().getString(R.string.campo_obligatorio));
+            } else if (contraseñaTextInput.getText().toString().length() < 1) {
+                contraseñaLayout.setError(getResources().getString(R.string.campo_obligatorio));
+            } else {
+
+                JSONObject body = new JSONObject();
+                try {
+                    body.put("email", email.getText().toString());
+                    body.put("usuario", usuario.getText().toString());
+                    body.put("contraseña", contraseñaTextInput.getText().toString());
+                    body.put("grupo", getIntent().getIntExtra("idGrupo", 1));
+                } catch (JSONException e) {
+                    throw new RuntimeException(e);
+                }
+
+                Rest rest = Rest.getInstance(context);
+                rest.crearContraseña(
+                        (Response.Listener<JSONObject>) response -> {
+                            Toast.makeText(context, "Contraseña creada", Toast.LENGTH_SHORT).show();
+                        },
+                        error -> {
+                            Toast.makeText(context, error.networkResponse.statusCode, Toast.LENGTH_SHORT).show();
+                        },
+                        body
+                );
+                return true;
+            }
+
         }
         return super.onOptionsItemSelected(item);
     }

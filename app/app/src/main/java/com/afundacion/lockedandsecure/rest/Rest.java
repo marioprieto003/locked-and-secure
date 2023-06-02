@@ -25,8 +25,9 @@ import java.util.Map;
 public class Rest {
     private static Rest INSTANCE;
 
-    private String ANDROID_LOCALHOST = "http://10.0.2.2:8000"; // locahost del emulador de Android studio
-    private String BASE_URL = ANDROID_LOCALHOST;
+    private final String ANDROID_LOCALHOST = "http://10.0.2.2:8000"; // locahost del emulador de Android studio
+    private final String MOVIL_IP = "http://192.168.0.11:8000";
+    private String BASE_URL = MOVIL_IP;
     private Context context;
     private RequestQueue queue;
 
@@ -100,7 +101,7 @@ public class Rest {
 
     public void crearContraseña(Response.Listener<JSONObject> onResponse, Response.ErrorListener onErrorResponse, JSONObject body) {
         queue = Volley.newRequestQueue(context);
-        queue.add(new JsonObjectRequestWithCustomAuth(
+        queue.add(new JsonObjectRequestWithClave(
                 Request.Method.POST,
                 BASE_URL + "/contraseña",
                 body,
@@ -217,7 +218,7 @@ public class Rest {
                 SharedPreferences sharedPreferencesEncrypted = EncryptedSharedPreferences.create(
                         "clave",
                         masterKey,
-                        context,
+                        context.getApplicationContext(),
                         EncryptedSharedPreferences.PrefKeyEncryptionScheme.AES256_SIV,
                         EncryptedSharedPreferences.PrefValueEncryptionScheme.AES256_GCM
                 );
@@ -227,7 +228,7 @@ public class Rest {
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
-
+            System.out.println("clave -> " + clave);
             HashMap<String, String> myHeaders = new HashMap<>();
             myHeaders.put("token", tokenSesion);
             myHeaders.put("clave", clave);
@@ -259,7 +260,7 @@ public class Rest {
                 SharedPreferences sharedPreferencesEncrypted = EncryptedSharedPreferences.create(
                         "clave",
                         masterKey,
-                        context,
+                        context.getApplicationContext(),
                         EncryptedSharedPreferences.PrefKeyEncryptionScheme.AES256_SIV,
                         EncryptedSharedPreferences.PrefValueEncryptionScheme.AES256_GCM
                 );

@@ -2,7 +2,7 @@
 #from Crypto.Hash import SHA256
 #from Crypto import Random
 from cryptography.fernet import Fernet
-
+import base64
 '''
 def encrypt(key, source, encode=True):
     key = SHA256.new(key).digest()  # use SHA-256 over our key to get a proper-sized AES key
@@ -27,13 +27,13 @@ def decrypt(key, source, decode=True):
 '''
 
 def encrypt_1(key, text):
-    key = key.decode('utf-8')
+    print(key)
+    #key = base64.urlsafe_b64encode(key.ljust(32)[:32])
     f = Fernet(key)
 
     return f.encrypt(text)
 
 def decrypt_1(key, text):
-    key = key.decode('utf-8')
     f = Fernet(key)
 
     return f.decrypt(text)

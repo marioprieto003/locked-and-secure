@@ -6,6 +6,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -32,6 +33,7 @@ public class Login extends AppCompatActivity {
     private TextInputLayout emailLayout, contraseñaLayout;
     private TextInputEditText email, contraseña;
     private Button inicioSesionBoton, registrarBoton;
+    SharedPreferences sharedPreferencesEncrypted;
     private Rest rest = Rest.getInstance(this);
     private Context context = this;
 
@@ -51,26 +53,6 @@ public class Login extends AppCompatActivity {
         inicioSesionBoton.setOnClickListener(inicioSesionListener);
         registrarBoton = findViewById(R.id.registrarBoton);
         registrarBoton.setOnClickListener(registrarListener);
-
-
-        /* MOVER A LA CLASE LAUNCHER */
-        String masterKey = null;
-        try {
-            masterKey = MasterKeys.getOrCreate(MasterKeys.AES256_GCM_SPEC);
-            SharedPreferences sharedPreferencesEncrypted = EncryptedSharedPreferences.create(
-                    "clave",
-                    masterKey,
-                    context,
-                    EncryptedSharedPreferences.PrefKeyEncryptionScheme.AES256_SIV,
-                    EncryptedSharedPreferences.PrefValueEncryptionScheme.AES256_GCM
-            );
-
-        } catch (GeneralSecurityException e) {
-            throw new RuntimeException(e);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-
     }
 
     View.OnClickListener inicioSesionListener = new View.OnClickListener() {
@@ -111,7 +93,7 @@ public class Login extends AppCompatActivity {
                                             EncryptedSharedPreferences.PrefKeyEncryptionScheme.AES256_SIV,
                                             EncryptedSharedPreferences.PrefValueEncryptionScheme.AES256_GCM
                                     );
-                                    sharedPreferencesEncrypted.edit().putString("clave", response.getString("clave"));
+                                    sharedPreferencesEncrypted.edit().putString("clave", response.getString("clave")).apply();
 
                                     Intent intent = new Intent(context, Inicio.class);
                                     startActivity(intent);

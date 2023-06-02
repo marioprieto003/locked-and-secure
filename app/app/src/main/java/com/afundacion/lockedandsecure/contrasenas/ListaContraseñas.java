@@ -75,6 +75,7 @@ public class ListaContraseñas extends Fragment {
         @Override
         public void onClick(View v) {
             Intent intent = new Intent(getContext(), CrearContraseña.class);
+            intent.putExtra("idGrupo", idGrupo);
             startActivity(intent);
         }
     };
