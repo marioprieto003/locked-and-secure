@@ -27,7 +27,7 @@ public class Rest {
 
     private final String ANDROID_LOCALHOST = "http://10.0.2.2:8000"; // locahost del emulador de Android studio
     private final String MOVIL_IP = "http://192.168.0.11:8000";
-    private String BASE_URL = ANDROID_LOCALHOST;
+    private String BASE_URL = MOVIL_IP;
     private Context context;
     private RequestQueue queue;
 
@@ -101,7 +101,7 @@ public class Rest {
 
     public void crearContraseña(Response.Listener<JSONObject> onResponse, Response.ErrorListener onErrorResponse, JSONObject body) {
         queue = Volley.newRequestQueue(context);
-        queue.add(new JsonObjectRequestWithClave(
+        queue.add(new JsonObjectRequestWithCustomAuth(
                 Request.Method.POST,
                 BASE_URL + "/contraseña",
                 body,
@@ -113,7 +113,7 @@ public class Rest {
   
     public void inicio(Response.Listener<JSONArray> onResponse, Response.ErrorListener onErrorResponse) {
         queue = Volley.newRequestQueue(context);
-        queue.add(new JsonArrayRequestWithClave(
+        queue.add(new JsonArrayRequestWithCustomAuth(
                 Request.Method.GET,
                 BASE_URL + "/inicio",
                 null,
@@ -135,7 +135,7 @@ public class Rest {
         ));
     }
 
-    public void generarContraseña(Response.Listener < JSONObject > onResponse, Response.ErrorListener onErrorResponse) {
+    public void generarContraseña(Response.Listener<JSONObject> onResponse, Response.ErrorListener onErrorResponse) {
         queue = Volley.newRequestQueue(context);
         queue.add(new JsonObjectRequest(
                 Request.Method.GET,
@@ -143,6 +143,18 @@ public class Rest {
                 null,
                 onResponse,
                 onErrorResponse
+        ));
+    }
+
+    public void getCuenta(Response.Listener<JSONObject> onResponse, Response.ErrorListener onErrorResponse) {
+        queue = Volley.newRequestQueue(context);
+        queue.add(new JsonObjectRequestWithCustomAuth(
+                Request.Method.GET,
+                BASE_URL + "/ajustes/cuenta",
+                null,
+                onResponse,
+                onErrorResponse,
+                context
         ));
     }
 
@@ -190,90 +202,6 @@ public class Rest {
 
             HashMap<String, String> myHeaders = new HashMap<>();
             myHeaders.put("token", tokenSesion);
-            return myHeaders;
-        }
-    }
-
-    class JsonObjectRequestWithClave extends JsonObjectRequest {
-        private Context context;
-
-        public JsonObjectRequestWithClave(int method,
-                                               String url,
-                                               @Nullable JSONObject jsonRequest,
-                                               Response.Listener<JSONObject> listener,
-                                               @Nullable Response.ErrorListener errorListener,
-                                               Context context) {
-            super(method, url, jsonRequest, listener, errorListener);
-            this.context = context;
-        }
-
-        @Override
-        public Map<String, String> getHeaders() {
-            SharedPreferences preferences = context.getSharedPreferences("usuario", Context.MODE_PRIVATE);
-            String tokenSesion = preferences.getString("token", null);
-            String clave = "";
-
-            try {
-                String masterKey = MasterKeys.getOrCreate(MasterKeys.AES256_GCM_SPEC);
-                SharedPreferences sharedPreferencesEncrypted = EncryptedSharedPreferences.create(
-                        "clave",
-                        masterKey,
-                        context.getApplicationContext(),
-                        EncryptedSharedPreferences.PrefKeyEncryptionScheme.AES256_SIV,
-                        EncryptedSharedPreferences.PrefValueEncryptionScheme.AES256_GCM
-                );
-                clave = sharedPreferencesEncrypted.getString("clave", "");
-            } catch (GeneralSecurityException e) {
-                throw new RuntimeException(e);
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
-            System.out.println("clave -> " + clave);
-            HashMap<String, String> myHeaders = new HashMap<>();
-            myHeaders.put("token", tokenSesion);
-            myHeaders.put("clave", clave);
-            return myHeaders;
-        }
-    }
-
-    class JsonArrayRequestWithClave extends JsonArrayRequest {
-        private Context context;
-
-        public JsonArrayRequestWithClave(int method,
-                                              String url,
-                                              @Nullable JSONArray jsonRequest,
-                                              Response.Listener<JSONArray> listener,
-                                              @Nullable Response.ErrorListener errorListener,
-                                              Context context) {
-            super(method, url, jsonRequest, listener, errorListener);
-            this.context = context;
-        }
-
-        @Override
-        public Map<String, String> getHeaders() {
-            SharedPreferences preferences = context.getSharedPreferences("usuario", Context.MODE_PRIVATE);
-            String tokenSesion = preferences.getString("token", null);
-            String clave = "";
-
-            try {
-                String masterKey = MasterKeys.getOrCreate(MasterKeys.AES256_GCM_SPEC);
-                SharedPreferences sharedPreferencesEncrypted = EncryptedSharedPreferences.create(
-                        "clave",
-                        masterKey,
-                        context.getApplicationContext(),
-                        EncryptedSharedPreferences.PrefKeyEncryptionScheme.AES256_SIV,
-                        EncryptedSharedPreferences.PrefValueEncryptionScheme.AES256_GCM
-                );
-                clave = sharedPreferencesEncrypted.getString("clave", "");
-            } catch (GeneralSecurityException e) {
-                throw new RuntimeException(e);
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
-
-            HashMap<String, String> myHeaders = new HashMap<>();
-            myHeaders.put("token", tokenSesion);
-            myHeaders.put("clave", clave);
             return myHeaders;
         }
     }

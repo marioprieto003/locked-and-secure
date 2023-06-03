@@ -4,10 +4,15 @@ import android.os.Bundle;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.fragment.app.Fragment;
+import androidx.navigation.NavController;
+import androidx.navigation.fragment.NavHostFragment;
 
 import com.afundacion.gestorcontrasenas.R;
 
 public class Ajustes extends AppCompatActivity {
+    Toolbar toolbar;
     public Ajustes() {}
 
     @Override
@@ -15,11 +20,18 @@ public class Ajustes extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ajustes);
 
-        getSupportFragmentManager()
-                .beginTransaction()
-                //.setCustomAnimations(R.anim.nav_enter, R.anim.nav_exit)
-                .replace(R.id.fragment_container, new AjustesFragment())
-                .addToBackStack(null)
-                .commit();
+        setUpToolbar();
+
+        Fragment fragment = this.getSupportFragmentManager().findFragmentById(R.id.nav_host_fragment);
+        NavHostFragment navHostFragment = (NavHostFragment)fragment;
+        NavController navController = navHostFragment.getNavController();
+        navController.navigate(R.id.ajustes);
+    }
+
+    private void setUpToolbar() {
+        toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
     }
 }

@@ -6,7 +6,7 @@
 
     <fragment
         android:id="@+id/ajustes"
-        android:name="com.afundacion.lockedandsecure.ajustes.Ajustes"
+        android:name="com.afundacion.lockedandsecure.ajustes.AjustesFragment"
         android:label="Ajustes" >
         <action
             android:id="@+id/action_ajustes_to_cuentaFragment"

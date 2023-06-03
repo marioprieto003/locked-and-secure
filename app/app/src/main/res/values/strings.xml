@@ -18,17 +18,39 @@
     <!-- DRAWER -->
     <string name="inicio">Inicio</string>
     <string name="ajustes">Ajustes</string>
-    <string name="navigation_drawer_open">Drawer abierto</string>
-    <string name="navigation_drawer_close">Drawer cerrado</string>
 
+    <!-- PANTALLAS VACIAS -->
     <string name="no_tienes_grupos">No tienes ningún grupo...</string>
     <string name="no_tienes_contraseñas">No tienes ninguna contraseña...</string>
 
     <!-- AJUSTES -->
     <string name="cuenta">Mi Cuenta</string>
-    <string name="cuenta_descripcion">Ver cuenta</string>
+    <string name="cuenta_descripcion">Ver cuenta, cambiar tema, camrbiar idioma...</string>
     <string name="seguridad">Seguridad</string>
     <string name="seguridad_descripcion">Cambiar contraseña, acceso biométrico...</string>
     <string name="recursos">Recursos adicionales</string>
     <string name="recursos_descripcion">Ver recursos adicionales</string>
+    <string name="apellidos">Apellidos</string>
+    <string name="ultimo_login">Último login</string>
+    <string name="idioma">Idioma</string>
+    <string-array name="idiomas">
+        <item>Español</item>
+        <item>Gallego</item>
+        <item>Inglés</item>
+    </string-array>
+    <string-array name="idiomas_values">
+        <item>es</item>
+        <item>gl</item>
+        <item>en</item>
+    </string-array>
+    <string name="envio_fallos">Enviar automáticamente los informes de fallos al equipo de desarrollo de Locked&amp;Secured.</string>
+    <string name="condiciones_uso">Condiciones de uso</string>
+    <string name="politica_privacidad">Política de privacidad</string>
+    <string name="avisos_legales">Avisos legales</string>
+    <string name="version">Versión</string>
+    <string name="cambiar_contraseña">Cambiar contraseña</string>
+    <string name="acceso_biometrico">Acceso biométrico</string>
+    <string name="obtener_ayuda">Obtener ayuda</string>
+    <string name="informe_fallos">Enviar informe de fallos</string>
+    <string name="cerrar_sesion">Cerrar sesión</string>
 </resources>

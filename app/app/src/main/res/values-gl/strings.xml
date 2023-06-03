@@ -17,18 +17,34 @@
     <!-- DRAWER -->
     <string name="inicio">Inicio</string>
     <string name="ajustes">Axustes</string>
-    <string name="navigation_drawer_open">Drawer aberto</string>
-    <string name="navigation_drawer_close">Drawer pechado</string>
 
+    <!-- PANTALLAS VACIAS -->
     <string name="no_tienes_grupos">Non tes ningún grupo...</string>
     <string name="no_tienes_contraseñas">Non tes ningún contrasinal...</string>
 
     <!-- AJUSTES -->
     <string name="cuenta">Conta</string>
-    <string name="cuenta_descripcion">Ver a miña conta</string>
+    <string name="cuenta_descripcion">Ver a miña conta, cambiar idioma...</string>
     <string name="seguridad">Seguridad</string>
     <string name="seguridad_descripcion">Cambiar o contrasinal, acceso biométrico...</string>
     <string name="recursos">Recursos adicionales</string>
     <string name="recursos_descripcion">Ver recursos adicionales</string>
-
+    <string name="apellidos">Apelidos</string>
+    <string name="ultimo_login">Último login</string>
+    <string name="idioma">Idioma</string>
+    <string-array name="idiomas">
+        <item>Español</item>
+        <item>Galego</item>
+        <item>Inglés</item>
+    </string-array>
+    <string name="envio_fallos">Enviar automáticamente os informes de fallos ao equipo de desenvolvemento de Locked&amp;Secured.</string>
+    <string name="condiciones_uso">Condicións de uso</string>
+    <string name="politica_privacidad">Política de privacidade</string>
+    <string name="avisos_legales">Avisos legais</string>
+    <string name="version">Versión</string>
+    <string name="cambiar_contraseña">Cambiar contrasinal</string>
+    <string name="acceso_biometrico">Acceso biométrico</string>
+    <string name="obtener_ayuda">Obter axuda</string>
+    <string name="informe_fallos">Enviar informe de fallos</string>
+    <string name="cerrar_sesion">Cerrar sesión</string>
 </resources>

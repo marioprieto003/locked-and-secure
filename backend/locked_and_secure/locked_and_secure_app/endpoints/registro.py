@@ -24,14 +24,14 @@ def registro(request):
         return JsonResponse({"error": "Email already registered"}, status=409)
     except Usuarios.DoesNotExist:
         salted_and_hashed_pass = bcrypt.hashpw(contraseña.encode('utf8'), bcrypt.gensalt()).decode('utf8')
-        usuario = Usuarios(email=email,
-                             contraseña=salted_and_hashed_pass,
-                             nombre=nombre,
-                             apellido1=apellido1,
-                             apellido2=apellido2,
-                             token_sesion=None,
-                             token_recuperacion=None,
-                             clave=secrets.token_hex(20)
+        usuario = Usuarios(
+                            email=email,
+                            contraseña=salted_and_hashed_pass,
+                            nombre=nombre,
+                            apellido1=apellido1,
+                            apellido2=apellido2,
+                            token_sesion=None,
+                            token_recuperacion=None
                             )
         usuario.save()
         return JsonResponse({"mensaje": "Usuario creado"}, status=201)

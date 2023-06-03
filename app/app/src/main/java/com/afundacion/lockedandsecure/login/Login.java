@@ -3,6 +3,8 @@ package com.afundacion.lockedandsecure.login;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.Configuration;
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -28,6 +30,7 @@ import org.json.JSONObject;
 
 import java.io.IOException;
 import java.security.GeneralSecurityException;
+import java.util.Locale;
 
 public class Login extends AppCompatActivity {
     private TextInputLayout emailLayout, contraseñaLayout;
@@ -46,6 +49,8 @@ public class Login extends AppCompatActivity {
 
         email = findViewById(R.id.emailTextInput);
         emailLayout = findViewById(R.id.emailTextInputLayout);
+
+        setIdioma();
 
         contraseña = findViewById(R.id.contraseñaTextInput);
         contraseñaLayout = findViewById(R.id.contraseñaTextInputLayout);
@@ -84,6 +89,7 @@ public class Login extends AppCompatActivity {
                                     SharedPreferences sharedPreferences = getSharedPreferences("usuario", Context.MODE_PRIVATE);
                                     sharedPreferences.edit().putString("token", response.getString("token")).apply();
 
+                                    /*
                                     // Guardado de la clave de encriptado en las EncyptedSharedPreferences
                                     String masterKey = MasterKeys.getOrCreate(MasterKeys.AES256_GCM_SPEC);
                                     SharedPreferences sharedPreferencesEncrypted = EncryptedSharedPreferences.create(
@@ -94,15 +100,11 @@ public class Login extends AppCompatActivity {
                                             EncryptedSharedPreferences.PrefValueEncryptionScheme.AES256_GCM
                                     );
                                     sharedPreferencesEncrypted.edit().putString("clave", response.getString("clave")).apply();
-
+                                    */
                                     Intent intent = new Intent(context, Inicio.class);
                                     startActivity(intent);
                                     finish();
                                 } catch (JSONException e) {
-                                    throw new RuntimeException(e);
-                                } catch (GeneralSecurityException e) {
-                                    throw new RuntimeException(e);
-                                } catch (IOException e) {
                                     throw new RuntimeException(e);
                                 }
                             }
@@ -134,4 +136,30 @@ public class Login extends AppCompatActivity {
             startActivity(intent);
         }
     };
+
+    /*      MOVER A LAUNCHER     */
+    // Metodo para mantener la configuracion de idioma
+    private void setIdioma() {
+        SharedPreferences sharedPreferences = getSharedPreferences("idioma", Context.MODE_PRIVATE);
+        String codigoIdioma = sharedPreferences.getString("idioma", null);
+
+        if (codigoIdioma != null) {
+            // Obtiene la configuración actual
+            Resources resources = getResources();
+            Configuration configuration = resources.getConfiguration();
+
+            // Crea un objeto Locale con el idioma especificado
+            Locale locale = new Locale(codigoIdioma);
+
+            // Actualiza la configuración con el nuevo idioma
+            configuration.setLocale(locale);
+            resources.updateConfiguration(configuration, resources.getDisplayMetrics());
+
+            // Guardamos el idioma en las shared preferences para mantenerlo al volver a abrir la app
+
+
+            // Reinicia la actividad para aplicar el cambio de idiomarecreate();
+        }
+
+    }
 }

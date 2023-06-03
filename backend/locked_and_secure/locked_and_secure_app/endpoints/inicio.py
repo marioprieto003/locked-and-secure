@@ -1,8 +1,6 @@
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from locked_and_secure_app.models import Usuarios, Grupos, Contraseñas
-from locked_and_secure_app.endpoints.funciones import decrypt_1
-from cryptography.fernet import Fernet
 import json, bcrypt, secrets, base64
 
 def all(request):
@@ -12,7 +10,6 @@ def all(request):
    
     try:
         token = request.headers['token']
-        clave = request.headers['clave']
     except KeyError:
         return JsonResponse({"error": "Faltán parámetros"}, status=400)
     
