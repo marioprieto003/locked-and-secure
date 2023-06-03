@@ -1,7 +1,7 @@
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from locked_and_secure_app.models import Usuarios, Grupos, Contraseñas
-import json, bcrypt, secrets
+import json, bcrypt, secrets, base64
 
 def all(request):
     if request.method != 'GET':
@@ -47,5 +47,5 @@ def all(request):
             "contraseñas": lista_contraseñas_grupo
             }
         )
-    
-    return JsonResponse({"lista": lista_contraseñas_completa}, safe=False, status=200)
+        
+    return JsonResponse(lista_contraseñas_completa, safe=False, status=200)

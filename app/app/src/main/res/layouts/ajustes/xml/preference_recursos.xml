@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?><!--
+  ~ /**
+  ~  * Created by mario on 6/3/23, 7:21 PM
+  ~  * Copyright (c) 2023 . All rights reserved.
+  ~  * Last modified 6/3/23, 6:33 PM
+  ~  */
+  -->
+
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <Preference
+        app:key="version"
+        app:icon="@drawable/ic_info"
+        app:summary="..."
+        app:title="@string/version"/>
+
+    <PreferenceCategory
+        app:key="obtener_ayuda"
+        app:title="@string/obtener_ayuda">
+
+        <SwitchPreferenceCompat
+            app:key="informe_fallos"
+            app:icon="@drawable/ic_bug"
+            app:title="@string/informe_fallos"
+            app:defaultValue="true"
+            app:summary="@string/envio_fallos"/>
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        app:key="legal_category"
+        app:title="Legal">
+
+        <Preference
+            app:key="condiciones_de_uso"
+            app:title="@string/condiciones_uso"
+            app:icon="@drawable/ic_condiciones"/>
+
+        <Preference
+            android:key="politica_privacidad"
+            app:title="@string/politica_privacidad"
+            android:icon="@drawable/ic_privacidad"/>
+
+        <Preference
+            app:key="avisos_legales"
+            app:title="@string/avisos_legales"
+            app:icon="@drawable/ic_legal"/>
+
+    </PreferenceCategory>
+</PreferenceScreen>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?><!--
+  ~ /**
+  ~  * Created by mario on 6/3/23, 6:44 PM
+  ~  * Copyright (c) 2023 . All rights reserved.
+  ~  * Last modified 6/3/23, 6:44 PM
+  ~  */
+  -->
+
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <Preference
+        android:key="cambiar_contraseña"
+        android:title="@string/cambiar_contraseña"
+        android:summary="@string/cambiar_contraseña"
+        android:icon="@drawable/ic_seguridad"/>
+
+    <SwitchPreferenceCompat
+        android:key="acceso_biometrico"
+        android:title="@string/acceso_biometrico"
+        android:summary="@string/acceso_biometrico"
+        android:icon="@drawable/ic_dedo" />
+
+</PreferenceScreen>

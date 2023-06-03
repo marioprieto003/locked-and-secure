@@ -1,5 +1,7 @@
 from django.db import models
 from django.utils import timezone
+from fernet_fields import EncryptedTextField
+
 class Usuarios(models.Model):
     # id auto generado
     email = models.EmailField()
@@ -9,17 +11,16 @@ class Usuarios(models.Model):
     apellido2 = models.TextField()
     token_sesion = models.TextField(null=True, default=None)
     token_recuperacion = models.TextField(null=True, default=None)
-    clave = models.TextField(null=True)
     
             
 class Contraseñas(models.Model):
     # id auto generado
     id_usuario = models.ForeignKey('Usuarios', on_delete=models.CASCADE, default=None, null=False)
     id_grupo = models.ForeignKey('Grupos', on_delete=models.CASCADE, default=None, null=False)
-    contraseña = models.TextField()
+    contraseña = EncryptedTextField()
     email = models.EmailField(null=True)
     usuario = models.TextField(null=True)
-    fecha = models.DateField(default=timezone.now())
+    fecha = models.DateField(default=timezone.now)
         
 class Grupos(models.Model):
     # id auto generado

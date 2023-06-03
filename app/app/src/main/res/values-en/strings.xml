@@ -17,9 +17,34 @@
     <!-- DRAWER -->
     <string name="inicio">Home</string>
     <string name="ajustes">Settings</string>
-    <string name="navigation_drawer_open">Drawer open</string>
-    <string name="navigation_drawer_close">Drawer closed</string>
 
+    <!-- PANTALLAS VACIAS -->
     <string name="no_tienes_grupos">You don\'t have any group...</string>
     <string name="no_tienes_contraseñas">You don\'t have any password...</string>
+
+    <!-- AJUSTES -->
+    <string name="cuenta">My account</string>
+    <string name="cuenta_descripcion">See my account, change theme, change language...</string>
+    <string name="seguridad">Security</string>
+    <string name="seguridad_descripcion">Change password, biometric access...</string>
+    <string name="recursos">Aditional resources</string>
+    <string name="recursos_descripcion">See aditional resources</string>
+    <string name="apellidos">Surnames</string>
+    <string name="ultimo_login">Last login</string>
+    <string name="idioma">Language</string>
+    <string-array name="idiomas">
+        <item>Spanish</item>
+        <item>Galician</item>
+        <item>English</item>
+    </string-array>
+    <string name="envio_fallos">Automatically send bug reports to the Locked&amp;Secured development team...</string>
+    <string name="condiciones_uso">Conditions of use</string>
+    <string name="politica_privacidad">Privacy policy</string>
+    <string name="avisos_legales">legal disclaimers</string>
+    <string name="version">Version</string>
+    <string name="cambiar_contraseña">Change password</string>
+    <string name="acceso_biometrico">Biometric access</string>
+    <string name="obtener_ayuda">Get help</string>
+    <string name="informe_fallos">Send bug reports</string>
+    <string name="cerrar_sesion">Logout</string>
 </resources>

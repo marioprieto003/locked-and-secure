@@ -1,0 +1,31 @@
+<!--
+  ~ /**
+  ~  * Created by mario on 6/2/23, 7:39 PM
+  ~  * Copyright (c) 2023 . All rights reserved.
+  ~  * Last modified 6/2/23, 7:39 PM
+  ~  */
+ -->
+
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <Preference
+        android:key="nombre"
+        android:title="Mario"
+        android:summary="@string/nombre"
+        android:icon="@drawable/ic_cuenta"/>
+
+    <Preference
+        android:key="apellidos"
+        android:title="Prieto Prieto"
+        android:summary="@string/apellidos"
+        android:icon="@drawable/ic_cuenta"/>
+
+    <ListPreference
+        android:key="idioma"
+        android:title="@string/idioma"
+        android:icon="@drawable/ic_idioma"
+        android:entries="@array/idiomas"
+        app:entryValues="@array/idiomas_values"
+        app:useSimpleSummaryProvider="true"/>
+</PreferenceScreen>

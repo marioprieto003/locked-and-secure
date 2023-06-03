@@ -8,7 +8,7 @@ android {
 
     defaultConfig {
         applicationId "com.afundacion.gestorcontrasenas"
-        minSdk 21
+        minSdk 23
         targetSdk 33
         versionCode 1
         versionName "1.0"
@@ -36,6 +36,7 @@ android {
                     'src/main/res/layouts/grupos',
                     'src/main/res/layouts/inicio',
                     'src/main/res/layouts/contraseñas',
+                    'src/main/res/layouts/ajustes',
                     'src/main/res/layouts',
                     'src/main/res'
             ]
@@ -53,6 +54,10 @@ dependencies {
     implementation 'com.google.zxing:core:3.4.1'
     implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.1.0'
     implementation 'com.facebook.shimmer:shimmer:0.5.0'
+    implementation 'androidx.security:security-crypto:1.0.0'
+    implementation "androidx.preference:preference:1.2.0"
+    implementation 'androidx.navigation:navigation-fragment:2.5.3'
+    implementation 'androidx.navigation:navigation-ui:2.5.3'
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'

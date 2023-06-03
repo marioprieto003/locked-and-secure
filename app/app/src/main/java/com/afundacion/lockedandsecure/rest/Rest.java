@@ -4,6 +4,8 @@ import android.content.Context;
 import android.content.SharedPreferences;
 
 import androidx.annotation.Nullable;
+import androidx.security.crypto.EncryptedSharedPreferences;
+import androidx.security.crypto.MasterKeys;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -15,14 +17,17 @@ import com.android.volley.toolbox.Volley;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.io.IOException;
+import java.security.GeneralSecurityException;
 import java.util.HashMap;
 import java.util.Map;
 
 public class Rest {
     private static Rest INSTANCE;
 
-    private String ANDROID_LOCALHOST = "http://10.0.2.2:8000"; // locahost del emulador de Android studio
-    private String BASE_URL = ANDROID_LOCALHOST;
+    private final String ANDROID_LOCALHOST = "http://10.0.2.2:8000"; // locahost del emulador de Android studio
+    private final String MOVIL_IP = "http://192.168.0.11:8000";
+    private String BASE_URL = MOVIL_IP;
     private Context context;
     private RequestQueue queue;
 
@@ -62,12 +67,13 @@ public class Rest {
 
     public void login(Response.Listener<JSONObject> onResponse, Response.ErrorListener onErrorResponse, JSONObject body) {
         queue = Volley.newRequestQueue(context);
-        queue.add(new JsonObjectRequest(
+        queue.add(new JsonObjectRequestWithCustomAuth(
                 Request.Method.POST,
                 BASE_URL + "/login",
                 body,
                 onResponse,
-                onErrorResponse
+                onErrorResponse,
+                context
         ));
     }
 
@@ -93,7 +99,7 @@ public class Rest {
         ));
     }
 
-  public void crearContraseña(Response.Listener<JSONObject> onResponse, Response.ErrorListener onErrorResponse, JSONObject body) {
+    public void crearContraseña(Response.Listener<JSONObject> onResponse, Response.ErrorListener onErrorResponse, JSONObject body) {
         queue = Volley.newRequestQueue(context);
         queue.add(new JsonObjectRequestWithCustomAuth(
                 Request.Method.POST,
@@ -129,7 +135,7 @@ public class Rest {
         ));
     }
 
-    public void generarContraseña(Response.Listener < JSONObject > onResponse, Response.ErrorListener onErrorResponse) {
+    public void generarContraseña(Response.Listener<JSONObject> onResponse, Response.ErrorListener onErrorResponse) {
         queue = Volley.newRequestQueue(context);
         queue.add(new JsonObjectRequest(
                 Request.Method.GET,
@@ -137,6 +143,18 @@ public class Rest {
                 null,
                 onResponse,
                 onErrorResponse
+        ));
+    }
+
+    public void getCuenta(Response.Listener<JSONObject> onResponse, Response.ErrorListener onErrorResponse) {
+        queue = Volley.newRequestQueue(context);
+        queue.add(new JsonObjectRequestWithCustomAuth(
+                Request.Method.GET,
+                BASE_URL + "/ajustes/cuenta",
+                null,
+                onResponse,
+                onErrorResponse,
+                context
         ));
     }
 

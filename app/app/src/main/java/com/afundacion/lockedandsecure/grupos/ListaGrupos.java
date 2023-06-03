@@ -100,6 +100,7 @@ public class ListaGrupos extends Fragment {
 
         rest.inicio(
                 response -> {
+                    // Si la respuesta tiene 1 o más grupo se muestra el recyclerview
                     if (response.length() != 0) {
                         try {
                             ArrayList<Grupo> listaGrupos = new ArrayList<>();
@@ -125,22 +126,14 @@ public class ListaGrupos extends Fragment {
                                 ));
                             }
 
-                            for (int i=0; i<listaGrupos.size(); i++) {
-                                System.out.println(listaGrupos.get(i).getNombre());
-                                System.out.println(listaGrupos.get(i).getTamaño());
-                            }
-                            GruposAdapter adapter = new GruposAdapter(listaGrupos, new GruposAdapter.RecyclerItemClick() {
-                                @Override
-                                public void itemClick(Grupo item) {
+                            GruposAdapter adapter = new GruposAdapter(listaGrupos, item ->
                                     getActivity()
-                                            .getSupportFragmentManager()
-                                            .beginTransaction()
-                                            //.setCustomAnimations(R.anim.nav_enter, R.anim.nav_exit)
-                                            .replace(R.id.fragment_container, ListaContraseñas.newInstance(item.getId()))
-                                            .addToBackStack(null)
-                                            .commit();
-                                }
-                            });
+                                    .getSupportFragmentManager()
+                                    .beginTransaction()
+                                    //.setCustomAnimations(R.anim.nav_enter, R.anim.nav_exit)
+                                    .replace(R.id.fragment_container, ListaContraseñas.newInstance(item.getId()))
+                                    .addToBackStack(null)
+                                    .commit());
 
                             recyclerView.setVisibility(View.VISIBLE);
 
@@ -153,6 +146,7 @@ public class ListaGrupos extends Fragment {
                             throw new RuntimeException(e);
                         }
                     } else {
+                        // Si la respuesta tiene 0 grupos ocultamos la preview de carga y el recycler view y mostramos un mensaje
                         recyclerView.setVisibility(View.INVISIBLE);
                         inicioTextView.setVisibility(View.VISIBLE);
                         shimmerFrameLayout.setVisibility(View.INVISIBLE);
@@ -160,11 +154,8 @@ public class ListaGrupos extends Fragment {
 
                     swipeRefresh.setRefreshing(false);
                 },
-                new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
+                error -> {
 
-                    }
                 }
         );
     }
