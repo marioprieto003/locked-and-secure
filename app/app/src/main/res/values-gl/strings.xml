@@ -18,6 +18,8 @@
     <string name="email_uso">Email xa en uso</string>
     <string name="contraseñas_no_coinciden">Os contrasinais non coinciden</string>
     <string name="registrarme">Rexistrarme</string>
+    <string name="iniciar_sesion">Iniciar sesión</string>
+    <string name="no_registrado">Usuario non rexistrado</string>
     <!-- DRAWER -->
     <string name="inicio">Inicio</string>
     <string name="ajustes">Axustes</string>

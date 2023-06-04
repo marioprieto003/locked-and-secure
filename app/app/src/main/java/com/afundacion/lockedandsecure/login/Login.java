@@ -8,7 +8,6 @@ import android.content.res.Resources;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -17,26 +16,18 @@ import com.afundacion.gestorcontrasenas.R;
 import com.afundacion.lockedandsecure.inicio.Inicio;
 import com.afundacion.lockedandsecure.registro.Registro;
 import com.afundacion.lockedandsecure.rest.Rest;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
-
-import androidx.security.crypto.EncryptedSharedPreferences;
-import androidx.security.crypto.MasterKeys;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.IOException;
-import java.security.GeneralSecurityException;
 import java.util.Locale;
 
 public class Login extends AppCompatActivity {
     private TextInputLayout emailLayout, contraseñaLayout;
     private TextInputEditText email, contraseña;
     private Button inicioSesionBoton, registrarBoton;
-    SharedPreferences sharedPreferencesEncrypted;
     private Rest rest = Rest.getInstance(this);
     private Context context = this;
 
@@ -45,7 +36,6 @@ public class Login extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_login);
-        //getWindow().setStatusBarColor(getResources().getColor(R.color.white));
 
         email = findViewById(R.id.emailTextInput);
         emailLayout = findViewById(R.id.emailTextInputLayout);
@@ -67,10 +57,10 @@ public class Login extends AppCompatActivity {
             contraseñaLayout.setHelperText("");
             if (email.getText().length() <= 0) {
                 emailLayout.setError("");
-                emailLayout.setHelperText("Campo obligatorio");
+                emailLayout.setHelperText(getResources().getText(R.string.campo_obligatorio));
             } else if (contraseña.getText().length() <= 0) {
                 contraseñaLayout.setError("");
-                contraseñaLayout.setHelperText("Campo obligatorio");
+                contraseñaLayout.setHelperText(getResources().getText(R.string.campo_obligatorio));
             } else {
                 JSONObject body = new JSONObject();
                 try {
@@ -81,44 +71,27 @@ public class Login extends AppCompatActivity {
                 }
 
                 rest.login(
-                        new Response.Listener<JSONObject>() {
-                            @Override
-                            public void onResponse(JSONObject response) {
-                                try {
-                                    // Guardado del token de sesión en las Shared Preferences
-                                    SharedPreferences sharedPreferences = getSharedPreferences("usuario", Context.MODE_PRIVATE);
-                                    sharedPreferences.edit().putString("token", response.getString("token")).apply();
+                        response -> {
+                            try {
+                                // Guardado del token de sesión en las Shared Preferences
+                                SharedPreferences sharedPreferences = getSharedPreferences("usuario", Context.MODE_PRIVATE);
+                                sharedPreferences.edit().putString("token", response.getString("token")).apply();
 
-                                    /*
-                                    // Guardado de la clave de encriptado en las EncyptedSharedPreferences
-                                    String masterKey = MasterKeys.getOrCreate(MasterKeys.AES256_GCM_SPEC);
-                                    SharedPreferences sharedPreferencesEncrypted = EncryptedSharedPreferences.create(
-                                            "clave",
-                                            masterKey,
-                                            context,
-                                            EncryptedSharedPreferences.PrefKeyEncryptionScheme.AES256_SIV,
-                                            EncryptedSharedPreferences.PrefValueEncryptionScheme.AES256_GCM
-                                    );
-                                    sharedPreferencesEncrypted.edit().putString("clave", response.getString("clave")).apply();
-                                    */
-                                    Intent intent = new Intent(context, Inicio.class);
-                                    startActivity(intent);
-                                    finish();
-                                } catch (JSONException e) {
-                                    throw new RuntimeException(e);
-                                }
+                                // Redireccion a la pantalla de inicio
+                                Intent intent = new Intent(context, Inicio.class);
+                                startActivity(intent);
+                                finish();
+                            } catch (JSONException e) {
+                                throw new RuntimeException(e);
                             }
                         },
-                        new Response.ErrorListener() {
-                            @Override
-                            public void onErrorResponse(VolleyError error) {
-                                if (error.networkResponse.statusCode == 403) {
-                                    contraseñaLayout.setError("");
-                                    contraseñaLayout.setHelperText(getResources().getString(R.string.contraseña_error));
-                                } else if (error.networkResponse.statusCode == 404) {
-                                    emailLayout.setError("");
-                                    emailLayout.setHelperText("Usuario no registrado");
-                                }
+                        error -> {
+                            if (error.networkResponse.statusCode == 403) {
+                                contraseñaLayout.setError("");
+                                contraseñaLayout.setHelperText(getResources().getString(R.string.contraseña_error));
+                            } else if (error.networkResponse.statusCode == 404) {
+                                emailLayout.setError("");
+                                emailLayout.setHelperText(getResources().getText(R.string.no_registrado));
                             }
                         },
                         body
@@ -129,17 +102,16 @@ public class Login extends AppCompatActivity {
         }
     };
 
-    View.OnClickListener registrarListener = new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-            Intent intent = new Intent(context, Registro.class);
-            startActivity(intent);
-        }
+    View.OnClickListener registrarListener = v -> {
+        Intent intent = new Intent(context, Registro.class);
+        startActivity(intent);
     };
 
     /*      MOVER A LAUNCHER     */
     // Metodo para mantener la configuracion de idioma
     private void setIdioma() {
+        // Recuperamos las shared preferences de idioma
+        // En caso de ser nulas cogeria el idioma predefinido de la app (Español)
         SharedPreferences sharedPreferences = getSharedPreferences("idioma", Context.MODE_PRIVATE);
         String codigoIdioma = sharedPreferences.getString("idioma", null);
 
@@ -154,11 +126,6 @@ public class Login extends AppCompatActivity {
             // Actualiza la configuración con el nuevo idioma
             configuration.setLocale(locale);
             resources.updateConfiguration(configuration, resources.getDisplayMetrics());
-
-            // Guardamos el idioma en las shared preferences para mantenerlo al volver a abrir la app
-
-
-            // Reinicia la actividad para aplicar el cambio de idiomarecreate();
         }
 
     }
