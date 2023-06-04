@@ -41,3 +41,11 @@ También cuenta con un sistema de generado de contraseñas seguras que cumplen l
 5. moverse a la carpeta *backend/locked_and_secure*
 6. Ejecutar `python manage.py runserver`
 7. Listo! Ya puedes probar Locked&Secure
+
+Para probarlo en un móvil habría que:
+1. Tener el móvil y el ordenador conectados a la misma red
+2. Con `ipconfig` conocer la ip interna del ordenador
+3. En la clase Rest, cambiar la variable `MOVIL_IP` por `http://ipOrdenador:8000`
+4. Asignar a `BASE_URL` la variable `MOVIL_IP`
+5. Al iniciar el servidor usar `python manage.py runserver 0.0.0.0:8000`
+6. Listo! Ya puedes probar Locked&Secure en un móvil
