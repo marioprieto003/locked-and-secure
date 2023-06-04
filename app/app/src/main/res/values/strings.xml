@@ -22,6 +22,8 @@
     <string name="registrarme">Registrarme</string>
     <string name="iniciar_sesion">Iniciar sesión</string>
     <string name="no_registrado">Usuario no registrado</string>
+    <string name="plataforma">Plataforma</string>
+    <string name="contraseña_creada">"Contraseña creada"</string>
     <!-- DRAWER -->
     <string name="inicio">Inicio</string>
     <string name="ajustes">Ajustes</string>

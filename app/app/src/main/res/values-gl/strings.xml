@@ -20,6 +20,8 @@
     <string name="registrarme">Rexistrarme</string>
     <string name="iniciar_sesion">Iniciar sesión</string>
     <string name="no_registrado">Usuario non rexistrado</string>
+    <string name="plataforma">Plataforma</string>
+    <string name="contraseña_creada">"Contrasinal creado"</string>
     <!-- DRAWER -->
     <string name="inicio">Inicio</string>
     <string name="ajustes">Axustes</string>

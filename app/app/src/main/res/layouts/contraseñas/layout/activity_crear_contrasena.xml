@@ -62,6 +62,29 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/plataformaTextInputLayout"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="32dp"
+        android:layout_marginTop="30dp"
+        app:endIconMode="clear_text"
+        app:errorEnabled="true"
+        app:helperTextTextColor="@color/mtrl_error"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/usuarioTextInputLayout">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/plataformaTextInput"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/plataforma"
+            android:inputType="text"
+            android:maxLines="1" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/contraseñaTextInputLayout"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="match_parent"
@@ -75,7 +98,7 @@
         app:helperTextTextColor="@color/mtrl_error"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/usuarioTextInputLayout">
+        app:layout_constraintTop_toBottomOf="@+id/plataformaTextInputLayout">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/contraseñaTextInput"
@@ -86,18 +109,15 @@
             android:maxLines="1" />
 
 
-
+        <View
+            android:id="@+id/fortaleza_contrasena"
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_marginTop="0dp"
+            android:background="@color/lightGray"/>
     </com.google.android.material.textfield.TextInputLayout>
 
-    <View
-        android:id="@+id/fortaleza_contrasena"
-        android:layout_width="0dp"
-        android:layout_height="2dp"
-        android:layout_marginTop="6dp"
-        android:background="@color/lightGray"
-        app:layout_constraintEnd_toEndOf="@+id/contraseñaTextInputLayout"
-        app:layout_constraintStart_toStartOf="@+id/contraseñaTextInputLayout"
-        app:layout_constraintTop_toBottomOf="@+id/contraseñaTextInputLayout" />
+
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/generarContraseña"
@@ -106,7 +126,7 @@
         app:layout_constraintStart_toStartOf="@+id/emailTextInputLayout"
         app:layout_constraintEnd_toEndOf="@+id/emailTextInputLayout"
         app:layout_constraintTop_toBottomOf="@+id/contraseñaTextInputLayout"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="50dp"
         android:backgroundTint="@color/purple_500"
         android:text="@string/generar_contraseña"/>
 
@@ -114,10 +134,11 @@
         android:id="@+id/qrBoton"
         android:layout_width="wrap_content"
         android:layout_height="48dp"
-        app:layout_constraintStart_toStartOf="@+id/generarContraseña"
-        app:layout_constraintEnd_toEndOf="@+id/generarContraseña"
+        app:layout_constraintStart_toStartOf="@+id/emailTextInputLayout"
+        app:layout_constraintEnd_toEndOf="@+id/emailTextInputLayout"
         app:layout_constraintTop_toBottomOf="@+id/generarContraseña"
         android:layout_marginTop="30dp"
         android:backgroundTint="@color/purple_500"
         android:text="QR"/>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

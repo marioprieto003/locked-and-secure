@@ -86,7 +86,7 @@ public class Login extends AppCompatActivity {
                             }
                         },
                         error -> {
-                            if (error.networkResponse.statusCode == 403) {
+                            if (error.networkResponse.statusCode == 401) {
                                 contraseñaLayout.setError("");
                                 contraseñaLayout.setHelperText(getResources().getString(R.string.contraseña_error));
                             } else if (error.networkResponse.statusCode == 404) {
