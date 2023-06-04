@@ -46,8 +46,8 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 public class CrearContraseña extends AppCompatActivity {
-    private TextInputLayout emailLayout, contraseñaLayout, usuarioLayout, nombreLayout;
-    private TextInputEditText email, contraseñaTextInput, usuario;
+    private TextInputLayout contraseñaLayout, emailLayout, usuarioLayout;
+    private TextInputEditText email, contraseñaTextInput, usuario, plataforma;
     private Button generarContraseña, qrBoton;
     private View fortalezaContraseña;
     private Toolbar toolbar;
@@ -65,9 +65,13 @@ public class CrearContraseña extends AppCompatActivity {
 
         email = findViewById(R.id.emailTextInput);
         usuario = findViewById(R.id.usuarioTextInput);
+        plataforma = findViewById(R.id.plataformaTextInput);
 
         qrBoton = findViewById(R.id.qrBoton);
         qrBoton.setOnClickListener(qrListener);
+
+        emailLayout = findViewById(R.id.emailTextInputLayout);
+        usuarioLayout = findViewById(R.id.usuarioTextInputLayout);
 
         contraseñaTextInput = findViewById(R.id.contraseñaTextInput);
         contraseñaLayout = findViewById(R.id.contraseñaTextInputLayout);
@@ -180,6 +184,7 @@ public class CrearContraseña extends AppCompatActivity {
                     body.put("email", email.getText().toString());
                     body.put("usuario", usuario.getText().toString());
                     body.put("contraseña", contraseñaTextInput.getText().toString());
+                    body.put("plataforma", plataforma.getText().toString());
                     body.put("grupo", getIntent().getIntExtra("idGrupo", 1));
                 } catch (JSONException e) {
                     throw new RuntimeException(e);
@@ -188,7 +193,9 @@ public class CrearContraseña extends AppCompatActivity {
                 Rest rest = Rest.getInstance(context);
                 rest.crearContraseña(
                         (Response.Listener<JSONObject>) response -> {
-                            Toast.makeText(context, "Contraseña creada", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(context, getResources().getString(R.string.contraseña_creada), Toast.LENGTH_SHORT).show();
+                            onBackPressed();
+                            finish();
                         },
                         error -> {
                             Toast.makeText(context, error.networkResponse.statusCode, Toast.LENGTH_SHORT).show();
@@ -223,7 +230,7 @@ public class CrearContraseña extends AppCompatActivity {
 
     Bitmap encodeAsBitmap(String str) throws WriterException {
         QRCodeWriter writer = new QRCodeWriter();
-        BitMatrix bitMatrix = writer.encode(str, BarcodeFormat.QR_CODE, 400, 400);
+        BitMatrix bitMatrix = writer.encode(str, BarcodeFormat.QR_CODE, 600, 600);
 
         int w = bitMatrix.getWidth();
         int h = bitMatrix.getHeight();

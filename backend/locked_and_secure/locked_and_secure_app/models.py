@@ -20,6 +20,7 @@ class Contraseñas(models.Model):
     contraseña = EncryptedTextField()
     email = models.EmailField(null=True)
     usuario = models.TextField(null=True)
+    plataforma = models.TextField(null=True)
     fecha = models.DateField(default=timezone.now)
         
 class Grupos(models.Model):

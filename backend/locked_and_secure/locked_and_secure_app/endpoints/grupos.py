@@ -53,7 +53,8 @@ def get_grupo(request, id):
                 "contraseña": contraseña.contraseña,
                 "email": contraseña.email,
                 "usuario": contraseña.usuario,
-                "fecha": contraseña.fecha
+                "fecha": contraseña.fecha,
+                "plataforma": contraseña.plataforma
             }
         )
     

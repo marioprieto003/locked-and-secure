@@ -11,9 +11,18 @@
 
     <string name="generar_contraseña">Generate password</string>
     <string name="nombre">Name</string>
-
+    <string name="apellido1">Surname</string>
+    <string name="apellido2">Surname</string>
+    <string name="repetir_contraseña">Repeat password</string>
     <string name="campo_obligatorio">Required field</string>
-
+    <string name="email_no_valido">Invalid email</string>
+    <string name="email_uso">Email already in use</string>
+    <string name="contraseñas_no_coinciden">Passwords don\'t match</string>
+    <string name="registrarme">Register</string>
+    <string name="iniciar_sesion">Login</string>
+    <string name="no_registrado">User not registered</string>
+    <string name="plataforma">Platform</string>
+    <string name="contraseña_creada">Password created</string>
     <!-- DRAWER -->
     <string name="inicio">Home</string>
     <string name="ajustes">Settings</string>

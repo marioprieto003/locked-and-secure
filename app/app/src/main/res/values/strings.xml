@@ -12,9 +12,18 @@
 
     <string name="generar_contraseña">Generar contraseña</string>
     <string name="nombre">Nombre</string>
-
+    <string name="apellido1">Primer apellido</string>
+    <string name="apellido2">Segundo apellido</string>
+    <string name="repetir_contraseña">Repetir contraseña</string>
     <string name="campo_obligatorio">Campo obligatorio</string>
-
+    <string name="email_no_valido">Email no válido</string>
+    <string name="email_uso">Email ya en uso</string>
+    <string name="contraseñas_no_coinciden">Las contraseñas no coinciden</string>
+    <string name="registrarme">Registrarme</string>
+    <string name="iniciar_sesion">Iniciar sesión</string>
+    <string name="no_registrado">Usuario no registrado</string>
+    <string name="plataforma">Plataforma</string>
+    <string name="contraseña_creada">"Contraseña creada"</string>
     <!-- DRAWER -->
     <string name="inicio">Inicio</string>
     <string name="ajustes">Ajustes</string>

@@ -8,12 +8,20 @@
     <string name="contraseña_error">Contrasinal incorrecta</string>
     <string name="usuario">Usuario</string>
     <string name="grupo">Grupo</string>
-
+    <string name="apellido1">Primeiro apelido</string>
+    <string name="apellido2">Segundo apelido</string>
+    <string name="repetir_contraseña">Repetir contrasinal</string>
     <string name="generar_contraseña">Xerar contrasinal</string>
     <string name="nombre">Nome</string>
 
     <string name="campo_obligatorio">Campo obligatorio</string>
-
+    <string name="email_uso">Email xa en uso</string>
+    <string name="contraseñas_no_coinciden">Os contrasinais non coinciden</string>
+    <string name="registrarme">Rexistrarme</string>
+    <string name="iniciar_sesion">Iniciar sesión</string>
+    <string name="no_registrado">Usuario non rexistrado</string>
+    <string name="plataforma">Plataforma</string>
+    <string name="contraseña_creada">"Contrasinal creado"</string>
     <!-- DRAWER -->
     <string name="inicio">Inicio</string>
     <string name="ajustes">Axustes</string>
@@ -21,7 +29,7 @@
     <!-- PANTALLAS VACIAS -->
     <string name="no_tienes_grupos">Non tes ningún grupo...</string>
     <string name="no_tienes_contraseñas">Non tes ningún contrasinal...</string>
-
+    <string name="email_no_valido">Email non válido</string>
     <!-- AJUSTES -->
     <string name="cuenta">Conta</string>
     <string name="cuenta_descripcion">Ver a miña conta, cambiar idioma...</string>

@@ -4,11 +4,6 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-
-
-
-
-
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/emailTextInputLayout"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
@@ -67,7 +62,7 @@
         android:layout_height="46dp"
         android:layout_marginTop="48dp"
         android:backgroundTint="?attr/colorPrimary"
-        android:text="Iniciar Sesión"
+        android:text="@string/iniciar_sesion"
         android:textColor="@color/white"
         app:layout_constraintEnd_toEndOf="@+id/emailTextInputLayout"
         app:layout_constraintHorizontal_bias="0.0"
@@ -83,7 +78,7 @@
         app:layout_constraintTop_toBottomOf="@+id/loginBoton"
         android:layout_marginTop="30dp"
         android:backgroundTint="?attr/colorPrimary"
-        android:text="Registrarme"
+        android:text="@string/registrarme"
         android:textColor="@color/white"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

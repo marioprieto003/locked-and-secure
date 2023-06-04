@@ -115,7 +115,8 @@ public class ListaGrupos extends Fragment {
                                             arrayContraseñas.getJSONObject(i).getString("contraseña"),
                                             arrayContraseñas.getJSONObject(i).getString("email"),
                                             arrayContraseñas.getJSONObject(i).getString("usuario"),
-                                            arrayContraseñas.getJSONObject(i).getString("fecha")
+                                            arrayContraseñas.getJSONObject(i).getString("fecha"),
+                                            arrayContraseñas.getJSONObject(i).getString("plataforma")
                                     ));
                                 }
                                 listaGrupos.add(new Grupo(

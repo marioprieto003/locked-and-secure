@@ -158,6 +158,18 @@ public class Rest {
         ));
     }
 
+    public void editarContraseña(Response.Listener<JSONObject> onResponse, Response.ErrorListener onErrorResponse, JSONObject body) {
+        queue = Volley.newRequestQueue(context);
+        queue.add(new JsonObjectRequestWithCustomAuth(
+                Request.Method.PUT,
+                BASE_URL + "/contraseña",
+                body,
+                onResponse,
+                onErrorResponse,
+                context
+        ));
+    }
+
     class JsonObjectRequestWithCustomAuth extends JsonObjectRequest {
         private Context context;
 

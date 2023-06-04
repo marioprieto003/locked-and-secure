@@ -36,6 +36,7 @@ def all(request):
                     "contraseña": contraseña.contraseña,
                     "email": contraseña.email,
                     "usuario": contraseña.usuario,
+                    "plataforma": contraseña.plataforma,
                     "fecha": contraseña.fecha
                  }
              )

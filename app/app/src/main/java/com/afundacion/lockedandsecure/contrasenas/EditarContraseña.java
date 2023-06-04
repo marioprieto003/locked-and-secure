@@ -34,6 +34,8 @@ import androidx.appcompat.widget.Toolbar;
 
 import com.afundacion.gestorcontrasenas.R;
 import com.afundacion.lockedandsecure.rest.Rest;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.zxing.BarcodeFormat;
@@ -42,18 +44,21 @@ import com.google.zxing.common.BitMatrix;
 import com.google.zxing.qrcode.QRCodeWriter;
 
 import org.json.JSONException;
+import org.json.JSONObject;
 
 public class EditarContraseña extends AppCompatActivity {
     private TextInputLayout emailLayout, contraseñaLayout, usuarioLayout, nombreLayout;
-    private TextInputEditText email, contraseñaTextInput, usuario;
+    private TextInputEditText email, contraseñaTextInput, usuario, plataforma;
     private Button generarContraseña, qrBoton;
     private View fortalezaContraseña;
+    private Contraseña contraseña;
     private Toolbar toolbar;
     private Context context = this;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        // Reciclamos el layout de crear contraseña
         setContentView(R.layout.activity_crear_contrasena);
         setUpToolbar();
 
@@ -62,6 +67,7 @@ public class EditarContraseña extends AppCompatActivity {
 
         email = findViewById(R.id.emailTextInput);
         usuario = findViewById(R.id.usuarioTextInput);
+        plataforma = findViewById(R.id.plataformaTextInput);
 
         qrBoton = findViewById(R.id.qrBoton);
         qrBoton.setOnClickListener(qrListener);
@@ -72,12 +78,12 @@ public class EditarContraseña extends AppCompatActivity {
 
         // Recoge el objeto contraseña que se saca del RecyclerView
         if (getIntent().getSerializableExtra("contraseña", Contraseña.class) != null) {
-            contraseñaTextInput.setEnabled(false);
-            Contraseña contraseña = getIntent().getSerializableExtra("contraseña", Contraseña.class);
+            contraseña = getIntent().getSerializableExtra("contraseña", Contraseña.class);
 
             email.setText(contraseña.getEmail());
             usuario.setText(contraseña.getUsuario());
             contraseñaTextInput.setText(contraseña.getContraseña());
+            plataforma.setText(contraseña.getPlataforma());
         }
 
         contraseñaTextInput.addTextChangedListener(new TextWatcher() {
@@ -174,7 +180,34 @@ public class EditarContraseña extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if (item.getItemId() == R.id.guardar) {
-            Toast.makeText(context, "click", Toast.LENGTH_SHORT).show();
+            // Comprobamos que al menos un campo ha sido modificado para mandar la peticion y que ninguno de ellos este vacio
+            if ((!email.getText().toString().equals(contraseña.getEmail()) || !usuario.getText().toString().equals(contraseña.getUsuario()) || !contraseñaTextInput.getText().equals(contraseña.getContraseña()))
+                && (email.getText().length() > 0 && usuario.getText().length() > 0 && contraseñaTextInput.length() > 0)) {
+                Rest rest = Rest.getInstance(context);
+                JSONObject body = new JSONObject();
+
+                try {
+                    body.put("email", email.getText().toString());
+                    body.put("usuario", usuario.getText().toString());
+                    body.put("contraseña", contraseñaTextInput.getText().toString());
+                    body.put("plataforma", plataforma.getText().toString());
+                    body.put("idContraseña", contraseña.getId());
+                } catch (JSONException e) {
+                    throw new RuntimeException(e);
+                }
+
+                rest.editarContraseña(
+                        response -> {
+                            Toast.makeText(context, "bien", Toast.LENGTH_SHORT).show();
+                            onBackPressed();
+                            finish();
+                        },
+                        error -> {
+
+                        },
+                        body
+                );
+            }
             return true;
         }
         return super.onOptionsItemSelected(item);
@@ -201,7 +234,7 @@ public class EditarContraseña extends AppCompatActivity {
 
     Bitmap encodeAsBitmap(String str) throws WriterException {
         QRCodeWriter writer = new QRCodeWriter();
-        BitMatrix bitMatrix = writer.encode(str, BarcodeFormat.QR_CODE, 400, 400);
+        BitMatrix bitMatrix = writer.encode(str, BarcodeFormat.QR_CODE, 600, 600);
 
         int w = bitMatrix.getWidth();
         int h = bitMatrix.getHeight();

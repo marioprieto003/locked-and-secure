@@ -1,7 +1,16 @@
+/*
+ * *
+ *  * Created by mario on 6/4/23, 11:24 AM
+ *  * Copyright (c) 2023 . All rights reserved.
+ *  * Last modified 6/4/23, 11:18 AM
+ *
+ */
+
 package com.afundacion.lockedandsecure.registro;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
@@ -57,6 +66,7 @@ public class Registro extends AppCompatActivity {
     View.OnClickListener registrarListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
+            // Reinicio de errores para que no se junten
             emailLayout.setHelperText("");
             contraseñaLayout.setHelperText("");
             repetirContraseñaLayout.setHelperText("");
@@ -64,30 +74,33 @@ public class Registro extends AppCompatActivity {
             apellido1Layout.setHelperText("");
             apellido2Layout.setHelperText("");
 
+            // Comprobaciones de que los compos est
             if (email.getText().length() <= 0) {
                 emailLayout.setError("");
-                emailLayout.setHelperText("Campo obligatorio");
-                // FALTA COMPROBACION DE EMAIL
+                emailLayout.setHelperText(getResources().getText(R.string.campo_obligatorio));
+            } else if(!Patterns.EMAIL_ADDRESS.matcher(email.getText().toString()).matches()){
+                emailLayout.setError("");
+                emailLayout.setHelperText(getResources().getText(R.string.email_no_valido)) ;
             } else if (contraseña.getText().length() <= 0) {
                 contraseñaLayout.setError("");
-                contraseñaLayout.setHelperText("Campo obligatorio");
+                contraseñaLayout.setHelperText(getResources().getText(R.string.campo_obligatorio));
             } else if (repetirContraseña.getText().length() <= 0) {
                 repetirContraseñaLayout.setError("");
-                repetirContraseñaLayout.setHelperText("Campo obligatorio");
+                repetirContraseñaLayout.setHelperText(getResources().getText(R.string.campo_obligatorio));
             } else if (nombre.getText().length() <= 0) {
                 nombreLayout.setError("");
-                nombreLayout.setHelperText("Campo obligatorio");
+                nombreLayout.setHelperText(getResources().getText(R.string.campo_obligatorio));
             } else if (apellido1.getText().length() <= 0) {
                 apellido1Layout.setError("");
-                apellido1Layout.setHelperText("Campo obligatorio");
+                apellido1Layout.setHelperText(getResources().getText(R.string.campo_obligatorio));
             } else if (apellido2.getText().length() <= 0) {
                 apellido2Layout.setError("");
-                apellido2Layout.setHelperText("Campo obligatorio");
+                apellido2Layout.setHelperText(getResources().getText(R.string.campo_obligatorio));
             } else if (!contraseña.getText().toString().equals(repetirContraseña.getText().toString())) {
                 contraseñaLayout.setError("");
                 repetirContraseñaLayout.setError("");
-                contraseñaLayout.setHelperText("Las contraseñas no coinciden");
-                repetirContraseñaLayout.setHelperText("Las contraseñas no coinciden");
+                contraseñaLayout.setHelperText(getResources().getText(R.string.contraseñas_no_coinciden));
+                repetirContraseñaLayout.setHelperText(getResources().getText(R.string.contraseñas_no_coinciden));
             } else {
                 JSONObject body = new JSONObject();
                 try {
@@ -101,18 +114,16 @@ public class Registro extends AppCompatActivity {
                 }
                 
                 rest.registro(
-                        new Response.Listener<JSONObject>() {
-                            @Override
-                            public void onResponse(JSONObject response) {
-                                Snackbar.make(findViewById(R.id.myCoordinatorLayout), "Usuario Registrado", Snackbar.LENGTH_LONG);
-                                onBackPressed();
-                                finish();
-                            }
+                        response -> {
+                            Snackbar.make(findViewById(R.id.myCoordinatorLayout), "Usuario Registrado", Snackbar.LENGTH_LONG);
+                            onBackPressed();
+                            finish();
                         },
-                        new Response.ErrorListener() {
-                            @Override
-                            public void onErrorResponse(VolleyError error) {
-                                Toast.makeText(context, "Error", Toast.LENGTH_SHORT).show();  
+                        error -> {
+                            // Control de error de email ya en uso
+                            if (error.networkResponse.statusCode == 409) {
+                                emailLayout.setError("");
+                                emailLayout.setHelperText(getResources().getText(R.string.email_uso));
                             }
                         },
                         body
