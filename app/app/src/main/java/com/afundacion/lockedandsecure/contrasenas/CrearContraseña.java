@@ -230,7 +230,7 @@ public class CrearContraseña extends AppCompatActivity {
 
     Bitmap encodeAsBitmap(String str) throws WriterException {
         QRCodeWriter writer = new QRCodeWriter();
-        BitMatrix bitMatrix = writer.encode(str, BarcodeFormat.QR_CODE, 400, 400);
+        BitMatrix bitMatrix = writer.encode(str, BarcodeFormat.QR_CODE, 600, 600);
 
         int w = bitMatrix.getWidth();
         int h = bitMatrix.getHeight();

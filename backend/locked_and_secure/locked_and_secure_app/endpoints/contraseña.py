@@ -33,24 +33,29 @@ def contraseña(request):
         contraseña_bd.save()
         return JsonResponse({}, status=200)
     
-    elif request.method == 'UPDATE':
+    elif request.method == 'PUT':
         body = json.loads(request.body)
         try:
             token = request.headers['token']
-            id_contraseña = request.body['idContraseña']
-            email = request.body['email']
-            usuario = request.body['usuario']
-            contraseña = request.body['contraseña']
-            grupo = request.body['grupo']
+            email = body['email']
+            usuario = body['usuario']
+            contraseña = body['contraseña']
+            plataforma = body['plataforma']
+            id_contraseña = body['idContraseña']
         except KeyError:
             return JsonResponse({"error": "Faltán parámetros"}, status=400)
         
         try:
-            contraseña = Contraseñas.objects.get(id=id_contraseña)
+            contraseña_bd = Contraseñas.objects.get(id=id_contraseña)
         except Contraseñas.DoesNotExist:
             return JsonResponse({"error": "La contraseña no existe"}, status=404)
         
-
+        contraseña_bd.email=email
+        contraseña_bd.usuario=usuario
+        contraseña_bd.contraseña=contraseña
+        contraseña_bd.plataforma=plataforma
+        contraseña_bd.save()
+        return JsonResponse({}, status=200)
     else:
         return JsonResponse({"error": "Método no soportado"}, status=405)   
         

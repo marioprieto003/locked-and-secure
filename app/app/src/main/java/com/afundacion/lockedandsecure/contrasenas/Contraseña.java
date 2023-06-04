@@ -12,14 +12,15 @@ import java.io.Serializable;
 
 public class Contraseña implements Serializable {
     int id;
-    String contraseña, email, usuario, fecha;
+    String contraseña, email, usuario, fecha, plataforma;
 
-    public Contraseña(int id, String contraseña, String email, String usuario, String fecha) {
+    public Contraseña(int id, String contraseña, String email, String usuario, String fecha, String plataforma) {
         this.id = id;
         this.contraseña = contraseña;
         this.email = email;
         this.usuario = usuario;
         this.fecha = fecha;
+        this.plataforma = plataforma;
     }
 
 
@@ -61,5 +62,13 @@ public class Contraseña implements Serializable {
 
     public void setFecha(String fecha) {
         this.fecha = fecha;
+    }
+
+    public String getPlataforma() {
+        return plataforma;
+    }
+
+    public void setPlataforma(String plataforma) {
+        this.plataforma = plataforma;
     }
 }

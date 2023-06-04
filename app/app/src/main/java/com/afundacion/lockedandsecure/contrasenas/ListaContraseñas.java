@@ -109,7 +109,8 @@ public class ListaContraseñas extends Fragment {
                                         response.getJSONObject(i).getString("contraseña"),
                                         response.getJSONObject(i).getString("email"),
                                         response.getJSONObject(i).getString("usuario"),
-                                        response.getJSONObject(i).getString("fecha")
+                                        response.getJSONObject(i).getString("fecha"),
+                                        response.getJSONObject(i).getString("plataforma")
                                 ));
                             }
 
