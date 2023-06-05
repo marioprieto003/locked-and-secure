@@ -37,7 +37,7 @@ También cuenta con un sistema de generado de contraseñas seguras que cumplen l
 1. Clonar o descargar el [repositorio](https://github.com/marioprieto003/locked-and-secure) </br>`git clone https://github.com/tu-nombre-usuario/locked-and-secure.git`
 2. Abrir la carpeta *app* en Android Studio y lanzar la app
 3. En el terminal, situarse en la carpeta *backend/*
-4. Intalar las dependencias necesarias </br> `pip install -r requirements.txt`
+4. Instalar las dependencias necesarias </br> `pip install -r requirements.txt`
 5. moverse a la carpeta *backend/locked_and_secure*
 6. Ejecutar `python manage.py runserver`
 7. Listo! Ya puedes probar Locked&Secure
