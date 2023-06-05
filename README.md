@@ -49,3 +49,11 @@ Para probarlo en un móvil habría que:
 4. Asignar a `BASE_URL` la variable `MOVIL_IP`
 5. Al iniciar el servidor usar `python manage.py runserver 0.0.0.0:8000`
 6. Listo! Ya puedes probar Locked&Secure en un móvil
+
+## Endpoints
+
+| Operación |	Descripción	| Método y URL	| Cabeceras	| Cuerpo petición |	Respuesta	| Cuerpo de respuesta(2xx)|
+|----------|----------|----------|----------|----------|----------|----------|
+| auth	|Endpoint para autenticar el usuario según si token de sesión	|GET /auth	  | token	| - |	200 Ok </br> 405 Not supported </br> 400 Bad request </br> 401 Unauthorized	|{“mensaje”: ”ok”}|
+| login	|Inicia una sesión y recibe un token de sesión	              | POST /login	|-	    | "{""email"": xx@gmail.com, ""contraseña"": asd}"|
+ 
