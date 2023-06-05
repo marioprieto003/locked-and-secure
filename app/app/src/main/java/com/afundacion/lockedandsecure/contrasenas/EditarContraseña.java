@@ -250,4 +250,11 @@ public class EditarContraseña extends AppCompatActivity {
         bitmap.setPixels(pixels, 0, w, 0, 0, w, h);
         return bitmap;
     }
+    
+    // Metodo para que la flecha superior funcione igual que pulsa atras
+    @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        return true;
+    }
 }
