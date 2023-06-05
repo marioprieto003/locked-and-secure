@@ -44,9 +44,6 @@ public class Inicio extends AppCompatActivity {
         bottomNavigationView = findViewById(R.id.bottomNavigationView);
         bottomNavigationView.setOnItemSelectedListener(bottomNavigationListener);
 
-
-
-        // Configuración del elemento default para que aparezca al iniciarse la activity y salga check
     }
 
     NavigationBarView.OnItemSelectedListener bottomNavigationListener = new NavigationBarView.OnItemSelectedListener() {

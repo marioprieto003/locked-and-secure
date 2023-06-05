@@ -31,7 +31,7 @@ public class AjustesFragment extends PreferenceFragmentCompat {
     @Override
     public void onCreatePreferences(@Nullable Bundle savedInstanceState, @Nullable String rootKey) {
         setPreferencesFromResource(R.xml.preferences_main, rootKey);
-
+        // Conexion con los preferences
         Preference preferenceCuenta = getPreferenceManager().findPreference("cuenta");
         Preference preferenceSeguridad = getPreferenceManager().findPreference("seguridad");
         Preference preferenceRecursosAdicionales = getPreferenceManager().findPreference("recursos_adicionales");
@@ -54,7 +54,7 @@ public class AjustesFragment extends PreferenceFragmentCompat {
             return true;
         });
 
-        // Borramos el token de sesion y la clave de cifrado y mandamos la app a la acitivity de login
+        // Borramos el token de sesion y la clave de cifrado y mandamos la app a la activity de login
         preferenceCerrarSesion.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
             @Override
             public boolean onPreferenceClick(@NonNull Preference preference) {

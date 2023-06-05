@@ -28,11 +28,12 @@ public class CuentaFragment extends PreferenceFragmentCompat {
     @Override
     public void onCreatePreferences(@Nullable Bundle savedInstanceState, @Nullable String rootKey) {
         setPreferencesFromResource(R.xml.preferences_cuenta, rootKey);
-
+        // Conexion con los preferences
         Preference preferenceNombre = getPreferenceManager().findPreference("nombre");
         Preference preferenceApellidos = getPreferenceManager().findPreference("apellidos");
         ListPreference preferenceCambiarIdioma = getPreferenceManager().findPreference("idioma");
 
+        // Recuperamos el idioma actual
         preferenceCambiarIdioma.setValue(getActivity().getResources().getConfiguration().locale.getLanguage());
         preferenceCambiarIdioma.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
             @Override

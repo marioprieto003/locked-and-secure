@@ -232,6 +232,7 @@ public class EditarContraseña extends AppCompatActivity {
         return !password.equals(password.toUpperCase());
     }
 
+    // Generador del codigo QR
     Bitmap encodeAsBitmap(String str) throws WriterException {
         QRCodeWriter writer = new QRCodeWriter();
         BitMatrix bitMatrix = writer.encode(str, BarcodeFormat.QR_CODE, 600, 600);

@@ -21,7 +21,7 @@ public class RecursosFragment extends PreferenceFragmentCompat {
     @Override
     public void onCreatePreferences(@Nullable Bundle savedInstanceState, @Nullable String rootKey) {
         setPreferencesFromResource(R.xml.preference_recursos, rootKey);
-
+        // Conexion con los preferences
         Preference preferenceVersion = getPreferenceManager().findPreference("version");
         Preference preferenceInformeFallos = getPreferenceManager().findPreference("informe_fallos");
         Preference preferenceCondicionesUso = getPreferenceManager().findPreference("condiciones_de_uso");

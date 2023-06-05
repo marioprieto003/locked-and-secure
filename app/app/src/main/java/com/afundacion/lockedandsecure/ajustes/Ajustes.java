@@ -22,6 +22,7 @@ public class Ajustes extends AppCompatActivity {
 
         setUpToolbar();
 
+        // Llamada al fragment Ajustes
         Fragment fragment = this.getSupportFragmentManager().findFragmentById(R.id.nav_host_fragment);
         NavHostFragment navHostFragment = (NavHostFragment)fragment;
         NavController navController = navHostFragment.getNavController();

@@ -76,6 +76,8 @@ public class CrearContraseña extends AppCompatActivity {
         contraseñaTextInput = findViewById(R.id.contraseñaTextInput);
         contraseñaLayout = findViewById(R.id.contraseñaTextInputLayout);
         fortalezaContraseña = findViewById(R.id.fortaleza_contrasena);
+
+        // Con TextWatcher podemos detectar cambios al momento en un EditTexxt
         contraseñaTextInput.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -145,6 +147,7 @@ public class CrearContraseña extends AppCompatActivity {
     };
 
     private void analyzeString(CharSequence contraseña) {
+        // Si la contraseña cumple los requisitos la consideramos "fuerte" y se lo mostramos al usuario
         if (hasLength(contraseña) && hasSymbol(contraseña) && hasUpperCase(contraseña) && hasLowerCase(contraseña)) {
             contraseñaLayout.setBoxStrokeColor(getResources().getColor(R.color.bulletproof));
             fortalezaContraseña.setBackgroundColor(getResources().getColor(R.color.bulletproof));
@@ -228,6 +231,7 @@ public class CrearContraseña extends AppCompatActivity {
         return !password.equals(password.toUpperCase());
     }
 
+    // Metodo de creacion del QR
     Bitmap encodeAsBitmap(String str) throws WriterException {
         QRCodeWriter writer = new QRCodeWriter();
         BitMatrix bitMatrix = writer.encode(str, BarcodeFormat.QR_CODE, 600, 600);
@@ -246,6 +250,7 @@ public class CrearContraseña extends AppCompatActivity {
         return bitmap;
     }
 
+    // Metodo para que la flecha superior funcione igual que pulsa atras
     @Override
     public boolean onSupportNavigateUp() {
         onBackPressed();

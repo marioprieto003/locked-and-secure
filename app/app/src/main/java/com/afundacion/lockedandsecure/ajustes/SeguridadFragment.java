@@ -14,7 +14,7 @@ public class SeguridadFragment extends PreferenceFragmentCompat {
     @Override
     public void onCreatePreferences(@Nullable Bundle savedInstanceState, @Nullable String rootKey) {
         setPreferencesFromResource(R.xml.preference_seguridad, rootKey);
-
+        // Conexion con los preferences
         Preference preferenceCambiarContraseña = getPreferenceManager().findPreference("cambiar_contraseña");
         Preference preferenceAcesoBiometrico = getPreferenceManager().findPreference("acceso_biometrico");
 
