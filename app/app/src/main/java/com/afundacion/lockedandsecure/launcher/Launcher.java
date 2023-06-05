@@ -8,6 +8,7 @@ import android.os.Bundle;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.afundacion.lockedandsecure.inicio.Inicio;
 import com.afundacion.lockedandsecure.login.Login;
 import com.afundacion.lockedandsecure.rest.Rest;
 import com.android.volley.Response;
@@ -21,8 +22,8 @@ public class Launcher extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        SharedPreferences preferences = getSharedPreferences("user", Context.MODE_PRIVATE);
-        String sessionToken = preferences.getString("tokenSession", null);
+        SharedPreferences preferences = getSharedPreferences("usuario", Context.MODE_PRIVATE);
+        String sessionToken = preferences.getString("token", null);
 
         if (sessionToken == null) {
             Intent intent = new Intent(this, Login.class);
@@ -32,23 +33,18 @@ public class Launcher extends AppCompatActivity {
             Rest rest = Rest.getInstance(context);
 
             rest.auth(
-                    new Response.Listener<JSONObject>() {
-                        @Override
-                        public void onResponse(JSONObject response) {
-                            //Intent intent = new Intent(context, Inicio.class);
-                            //startActivity(intent);
-                            Intent intent = new Intent(context, Login.class);
-                            startActivity(intent);
-                            finish();
-                        }
+                    response -> {
+                        Intent intent = new Intent(context, Inicio.class);
+                        startActivity(intent);
+                        finish();
                     },
-                    new Response.ErrorListener() {
-                        @Override
-                        public void onErrorResponse(VolleyError error) {
+                    error -> {
+                        if (error.networkResponse.statusCode == 401) {
                             Intent intent = new Intent(context, Login.class);
                             startActivity(intent);
                             finish();
                         }
+
                     }
             );
         }

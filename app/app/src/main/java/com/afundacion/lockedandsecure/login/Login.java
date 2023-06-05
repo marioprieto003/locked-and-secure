@@ -34,6 +34,8 @@ public class Login extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        // Metodo para comprobar si hay una sesion activa
+        auth();
 
         setContentView(R.layout.activity_login);
 
@@ -127,6 +129,12 @@ public class Login extends AppCompatActivity {
             configuration.setLocale(locale);
             resources.updateConfiguration(configuration, resources.getDisplayMetrics());
         }
+
+    }
+
+    private void auth() {
+        Rest rest1 = Rest.getInstance(context);
+
 
     }
 }
