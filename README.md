@@ -1,7 +1,7 @@
 # *Locked&Secure*
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/marioprieto003/locked-and-secure/main/lockedsecure-logo.png" alt="Captura de pantalla">
+  <img src="https://raw.githubusercontent.com/marioprieto003/locked-and-secure/main/imagenes/lockedsecure-logo.png" alt="Captura de pantalla">
 </p>
 <p align="left">
   <img src="https://img.shields.io/badge/STATUS-EN%20DESAROLLO-green"> 
