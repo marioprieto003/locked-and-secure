@@ -14,6 +14,7 @@
 - [Estructura](#estructura)
 - [Tecnologías Utilizadas](#tecnologías-utilizadas)
 - [Instalación](#instalación)
+- [Endpoints](#endpoints)
 
 ## Descripción
 Locked&Secure es una app pensada para aquellas personas preocupadas por la seguridad de sus contraseñas que quieren tener un lugar seguro para ellas. </br>
