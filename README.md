@@ -1,4 +1,4 @@
-# *Locked&Secure*
+# :lock: *Locked&Secure* :lock:
 
 <p align="center">
   <img src="https://raw.githubusercontent.com/marioprieto003/locked-and-secure/main/imagenes/lockedsecure-logo.png" alt="Captura de pantalla">
@@ -29,8 +29,8 @@ También cuenta con un sistema de generado de contraseñas seguras que cumplen l
 ~~~
 
 ## Tecnologías utilizadas
-- Django: Es un framework web gratuito y de código abierto basado en Python que sigue el patrón MVT (Modelo, Vista, Template).
-- Android Studio: Se usa para desarrollar una interfaz de usuario para dispositivos móviles.
+- :snake: Django: Es un framework web gratuito y de código abierto basado en Python que sigue el patrón MVT (Modelo, Vista, Template).
+- :iphone: Android Studio: Se usa para desarrollar una interfaz de usuario para dispositivos móviles.
 
 
 ## Instalación
