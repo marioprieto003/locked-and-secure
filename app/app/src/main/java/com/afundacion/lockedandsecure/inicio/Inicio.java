@@ -40,8 +40,6 @@ public class Inicio extends AppCompatActivity {
 
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setHomeButtonEnabled(true);
 
         bottomNavigationView = findViewById(R.id.bottomNavigationView);
         bottomNavigationView.setOnItemSelectedListener(bottomNavigationListener);
@@ -67,7 +65,6 @@ public class Inicio extends AppCompatActivity {
     };
 
     private void cambiarFragment(Fragment fragment) {
-        Toast.makeText(this, "Transicion", Toast.LENGTH_SHORT).show();
         getSupportFragmentManager()
                 .beginTransaction()
                 //.setCustomAnimations(R.anim.nav_enter, R.anim.nav_exit)

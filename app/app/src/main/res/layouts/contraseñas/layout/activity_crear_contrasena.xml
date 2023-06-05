@@ -7,11 +7,9 @@
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="?attr/actionBarSize"
         app:layout_constraintTop_toTopOf="parent"
-        android:background="@color/purple_500"
-        android:minHeight="48dp"
-        app:layout_anchorGravity="center"
+        android:background="?attr/colorPrimary"
         android:theme="@style/AppToolbar"
         app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
 
@@ -92,7 +90,6 @@
         android:layout_marginHorizontal="32dp"
         android:layout_marginTop="30dp"
         app:endIconMode="password_toggle"
-        app:endIconTint="@color/purple_500"
         app:errorEnabled="true"
         app:helperTextEnabled="true"
         app:helperTextTextColor="@color/mtrl_error"
@@ -127,7 +124,6 @@
         app:layout_constraintEnd_toEndOf="@+id/emailTextInputLayout"
         app:layout_constraintTop_toBottomOf="@+id/contraseñaTextInputLayout"
         android:layout_marginTop="50dp"
-        android:backgroundTint="@color/purple_500"
         android:text="@string/generar_contraseña"/>
 
     <com.google.android.material.button.MaterialButton
@@ -138,7 +134,6 @@
         app:layout_constraintEnd_toEndOf="@+id/emailTextInputLayout"
         app:layout_constraintTop_toBottomOf="@+id/generarContraseña"
         android:layout_marginTop="30dp"
-        android:backgroundTint="@color/purple_500"
         android:text="QR"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

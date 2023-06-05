@@ -245,4 +245,10 @@ public class CrearContraseña extends AppCompatActivity {
         bitmap.setPixels(pixels, 0, w, 0, 0, w, h);
         return bitmap;
     }
+
+    @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        return true;
+    }
 }
