@@ -51,6 +51,10 @@ Para probarlo en un móvil habría que:
 5. Al iniciar el servidor usar `python manage.py runserver 0.0.0.0:8000`
 6. Listo! Ya puedes probar Locked&Secure en un móvil
 
+### Email y contraseña de prueba
+- :email: Email: prueba@gmail.com
+- :lock:  contraseña: 1234
+
 ## Endpoints
 
 | Operación            | Descripción                                                                         | Método y URL                | Cabeceras | Cuerpo petición                                                                                                                                          | Respuesta                                                                           | Cuerpo de respuesta(2xx)                                                                                                                                                                                                                                |
