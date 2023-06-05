@@ -14,7 +14,8 @@
         android:minHeight="?attr/actionBarSize"
         app:layout_anchorGravity="center"
         app:layout_constraintTop_toTopOf="parent"
-        style="@style/AppTheme.AppBarOverlay"/>
+        android:theme="@style/AppToolbar"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/fragment_container"
