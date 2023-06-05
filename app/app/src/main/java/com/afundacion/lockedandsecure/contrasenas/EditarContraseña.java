@@ -198,7 +198,7 @@ public class EditarContraseña extends AppCompatActivity {
 
                 rest.editarContraseña(
                         response -> {
-                            Toast.makeText(context, "bien", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(context, "Contraseña cambiada", Toast.LENGTH_SHORT).show();
                             onBackPressed();
                             finish();
                         },

@@ -59,7 +59,9 @@ public class CrearGrupo extends AppCompatActivity {
                 
                 rest.crearGrupo(
                         response -> {
-                            Toast.makeText(context, "", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(context, "Usuario creado", Toast.LENGTH_SHORT).show();
+                            onBackPressed();
+                            finish();
                         },
                         error -> {
                             if (error.networkResponse.statusCode == 409) {
