@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from locked_and_secure_app.endpoints import health, login, registro, inicio, grupos, contraseña, ajustes
+from locked_and_secure_app.endpoints import health, login, registro, inicio, grupos, contraseña, ajustes, auth
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -28,4 +28,5 @@ urlpatterns = [
     path('grupo/<int:id>', grupos.get_grupo),
     path('inicio', inicio.all),
     path('ajustes/<str:apartado>', ajustes.cuenta),
+    path('auth', auth.auth)
 ]
