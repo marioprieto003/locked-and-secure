@@ -27,7 +27,7 @@ public class Rest {
 
     private final String ANDROID_LOCALHOST = "http://10.0.2.2:8000"; // locahost del emulador de Android studio
     private final String MOVIL_IP = "http://192.168.0.11:8000";
-    private String BASE_URL = MOVIL_IP;
+    private String BASE_URL = ANDROID_LOCALHOST;
     private Context context;
     private RequestQueue queue;
 
